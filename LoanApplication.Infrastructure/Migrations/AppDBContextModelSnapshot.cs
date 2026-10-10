@@ -91,6 +91,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Property<decimal>("MonthlyIncome")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("MonthlyInvestement")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Pan")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -691,9 +694,15 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Property<decimal>("EligibleLoanAmount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("InterestRate")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("RiskCategory")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TenureInMonths")
+                        .HasColumnType("int");
 
                     b.HasKey("ScoreCardId");
 

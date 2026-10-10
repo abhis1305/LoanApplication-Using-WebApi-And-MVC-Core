@@ -11,7 +11,11 @@ namespace LoanApp.Models
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
 
-        public string RiskCategory { get; set; }
+        public string RiskCategory { get; set; } = string.Empty;
+
+        public decimal InterestRate { get; set; }
+
+        public int TenureInMonths { get; set; }
 
         public decimal EligibleLoanAmount { get; set; }
 

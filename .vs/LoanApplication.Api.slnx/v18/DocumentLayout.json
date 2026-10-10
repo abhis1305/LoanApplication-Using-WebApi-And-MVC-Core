@@ -3,24 +3,84 @@
   "WorkspaceRootPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261008151700_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LoanApplication.Infrastructure\\Migrations\\20261008151700_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.domain\\entities\\applicationstatusvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|solutionrelative:loanapplication.domain\\entities\\applicationstatusvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.api\\controllers\\supportticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\controllers\\supportticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\repositories\\scorecardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\repositories\\scorecardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.application\\dto\\cibilscoreresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|solutionrelative:loanapplication.application\\dto\\cibilscoreresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.application\\dto\\cibilscorerequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|solutionrelative:loanapplication.application\\dto\\cibilscorerequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.application\\interfcae\\iscorecardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|solutionrelative:loanapplication.application\\interfcae\\iscorecardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.api\\controllers\\scorecardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\controllers\\scorecardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.application\\dto\\scorecardrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|solutionrelative:loanapplication.application\\dto\\scorecardrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.application\\dto\\scorecardresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|solutionrelative:loanapplication.application\\dto\\scorecardresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.domain\\entities\\scorecard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|solutionrelative:loanapplication.domain\\entities\\scorecard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.domain\\entities\\cibilreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|solutionrelative:loanapplication.domain\\entities\\cibilreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.api\\controllers\\cibilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\controllers\\cibilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.domain\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|solutionrelative:loanapplication.domain\\entities\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\migrations\\20261009145604_u.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\migrations\\20261009145604_u.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\repositories\\cibilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\repositories\\cibilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.application\\interfcae\\icibilrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|solutionrelative:loanapplication.application\\interfcae\\icibilrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.application\\interfcae\\icibilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8AF9F98-0D8C-61A8-F47E-FDFC4661D619}|LoanApplication.Application\\LoanApplication.Application.csproj|solutionrelative:loanapplication.application\\interfcae\\icibilservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\migrations\\20261008151700_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\migrations\\20261008151700_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.domain\\entities\\applicationstatusvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|solutionrelative:loanapplication.domain\\entities\\applicationstatusvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.domain\\loanapplication.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -31,12 +91,12 @@
       "RelativeMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|solutionrelative:loanapplication.domain\\entities\\dealreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.domain\\entities\\cibilreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF43DC02-B0EA-44A1-C847-D562E7D578C0}|LoanApplication.Domain\\LoanApplication.Domain.csproj|solutionrelative:loanapplication.domain\\entities\\cibilreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.api\\loanapplication.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\loanapplication.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\migrations\\20261009155847_addscorecardloanoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\migrations\\20261009155847_addscorecardloanoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,37 +106,283 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SupportTicketController.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Controllers\\SupportTicketController.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Api\\Controllers\\SupportTicketController.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Controllers\\SupportTicketController.cs",
+              "RelativeToolTip": "LoanApplication.Api\\Controllers\\SupportTicketController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T18:34:02.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CibilScoreRequestDto.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\CibilScoreRequestDto.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\DTO\\CibilScoreRequestDto.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\CibilScoreRequestDto.cs",
+              "RelativeToolTip": "LoanApplication.Application\\DTO\\CibilScoreRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:32:05.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CibilScoreResponseDto.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\CibilScoreResponseDto.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\DTO\\CibilScoreResponseDto.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\CibilScoreResponseDto.cs",
+              "RelativeToolTip": "LoanApplication.Application\\DTO\\CibilScoreResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:32:37.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Program.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Api\\Program.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Program.cs",
+              "RelativeToolTip": "LoanApplication.Api\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAADwvxAAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T14:37:51.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IScoreCardService.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\Interfcae\\IScoreCardService.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\Interfcae\\IScoreCardService.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\Interfcae\\IScoreCardService.cs",
+              "RelativeToolTip": "LoanApplication.Application\\Interfcae\\IScoreCardService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T15:54:36.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ScoreCardService.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\ScoreCardService.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Repositories\\ScoreCardService.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\ScoreCardService.cs",
+              "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\ScoreCardService.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAADwv14AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T15:55:05.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ScoreCardController.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Controllers\\ScoreCardController.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Api\\Controllers\\ScoreCardController.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Controllers\\ScoreCardController.cs",
+              "RelativeToolTip": "LoanApplication.Api\\Controllers\\ScoreCardController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwDMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T15:56:50.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "20261009155847_AddScoreCardLoanOptions.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261009155847_AddScoreCardLoanOptions.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Migrations\\20261009155847_AddScoreCardLoanOptions.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261009155847_AddScoreCardLoanOptions.cs",
+              "RelativeToolTip": "LoanApplication.Infrastructure\\Migrations\\20261009155847_AddScoreCardLoanOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T15:58:49.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ScoreCardRequestDto.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\ScoreCardRequestDto.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\DTO\\ScoreCardRequestDto.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\ScoreCardRequestDto.cs",
+              "RelativeToolTip": "LoanApplication.Application\\DTO\\ScoreCardRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T15:54:11.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ScoreCardResponseDto.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\ScoreCardResponseDto.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\DTO\\ScoreCardResponseDto.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\ScoreCardResponseDto.cs",
+              "RelativeToolTip": "LoanApplication.Application\\DTO\\ScoreCardResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T15:53:15.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ScoreCard.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\ScoreCard.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Domain\\Entities\\ScoreCard.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\ScoreCard.cs",
+              "RelativeToolTip": "LoanApplication.Domain\\Entities\\ScoreCard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T15:49:50.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ICibilRepository.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\Interfcae\\ICibilRepository.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\Interfcae\\ICibilRepository.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\Interfcae\\ICibilRepository.cs",
+              "RelativeToolTip": "LoanApplication.Application\\Interfcae\\ICibilRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:33:41.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\Customer.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Domain\\Entities\\Customer.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\Customer.cs",
+              "RelativeToolTip": "LoanApplication.Domain\\Entities\\Customer.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAowEYAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:29:54.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CibilController.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Controllers\\CibilController.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Api\\Controllers\\CibilController.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Controllers\\CibilController.cs",
+              "RelativeToolTip": "LoanApplication.Api\\Controllers\\CibilController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA2wCIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:49:06.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AppDBContext.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
+              "RelativeToolTip": "LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T14:38:08.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CibilService.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\CibilService.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Repositories\\CibilService.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\CibilService.cs",
+              "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\CibilService.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:39:53.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CibilReport.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\CibilReport.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Domain\\Entities\\CibilReport.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\CibilReport.cs",
+              "RelativeToolTip": "LoanApplication.Domain\\Entities\\CibilReport.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T14:55:13.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "20261009145604_u.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261009145604_u.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Migrations\\20261009145604_u.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261009145604_u.cs",
+              "RelativeToolTip": "LoanApplication.Infrastructure\\Migrations\\20261009145604_u.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:56:08.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ICibilService.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\Interfcae\\ICibilService.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\Interfcae\\ICibilService.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\Interfcae\\ICibilService.cs",
+              "RelativeToolTip": "LoanApplication.Application\\Interfcae\\ICibilService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T14:35:58.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "20261008151700_initial.cs",
               "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261008151700_initial.cs",
               "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Migrations\\20261008151700_initial.cs",
               "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261008151700_initial.cs",
               "RelativeToolTip": "LoanApplication.Infrastructure\\Migrations\\20261008151700_initial.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABdAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAswGcAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-08T15:17:02.185Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LoanApplication.Domain",
+              "DocumentIndex": 20,
+              "Title": "LoanApplication.Domain.csproj",
               "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
               "RelativeDocumentMoniker": "LoanApplication.Domain\\LoanApplication.Domain.csproj",
               "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
               "RelativeToolTip": "LoanApplication.Domain\\LoanApplication.Domain.csproj",
               "ViewState": "AgIAAA0AAAAAAAAAAAAwwBgAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-10-08T15:00:10.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-08T15:00:10.767Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 19,
               "Title": "ApplicationStatusVM.cs",
               "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\ApplicationStatusVM.cs",
               "RelativeDocumentMoniker": "LoanApplication.Domain\\Entities\\ApplicationStatusVM.cs",
@@ -89,46 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AppDBContext.cs",
-              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
-              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
-              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
-              "RelativeToolTip": "LoanApplication.Infrastructure\\Data\\AppDBContext.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAkwEcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-08T14:38:08.409Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Program.cs",
-              "RelativeDocumentMoniker": "LoanApplication.Api\\Program.cs",
-              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Program.cs",
-              "RelativeToolTip": "LoanApplication.Api\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAIwBcAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-08T14:37:51.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\appsettings.json",
-              "RelativeDocumentMoniker": "LoanApplication.Api\\appsettings.json",
-              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\appsettings.json",
-              "RelativeToolTip": "LoanApplication.Api\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-10-08T14:33:58.699Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 21,
               "Title": "DealReview.cs",
               "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\DealReview.cs",
               "RelativeDocumentMoniker": "LoanApplication.Domain\\Entities\\DealReview.cs",
@@ -141,20 +408,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CibilReport.cs",
-              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\CibilReport.cs",
-              "RelativeDocumentMoniker": "LoanApplication.Domain\\Entities\\CibilReport.cs",
-              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\Entities\\CibilReport.cs",
-              "RelativeToolTip": "LoanApplication.Domain\\Entities\\CibilReport.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-08T14:55:13.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 22,
               "Title": "LoanApplication.Api.http",
               "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\LoanApplication.Api.http",
               "RelativeDocumentMoniker": "LoanApplication.Api\\LoanApplication.Api.http",

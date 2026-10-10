@@ -57,6 +57,8 @@ namespace LoanApp.Models
             ErrorMessage = "Enter valid income")]
         public decimal MonthlyIncome { get; set; }
 
+        public decimal MonthlyInvestement { get; set; }
+
         public bool IsEmailVerified { get; set; } = false;
 
         // Navigation Properties
