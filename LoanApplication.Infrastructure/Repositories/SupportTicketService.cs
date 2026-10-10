@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using LoanApp.Models;
 using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interfcae;
+using LoanApplication.Domain.Entities;
 using LoanApplication.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;

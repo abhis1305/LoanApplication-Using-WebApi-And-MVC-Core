@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 
-namespace LoanApp.Models
+namespace LoanApplication.Domain.Entities
 {
     public class User
     {

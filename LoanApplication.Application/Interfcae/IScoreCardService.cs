@@ -4,7 +4,6 @@ namespace LoanApplication.Application.Interface
 {
     public interface IScoreCardService
     {
-        Task<ScoreCardResponseDto> GenerateScoreCardAsync(
-            int customerId);
+        Task<ScoreCardResponseDto> GenerateScoreCardAsync(int customerId);
     }
 }

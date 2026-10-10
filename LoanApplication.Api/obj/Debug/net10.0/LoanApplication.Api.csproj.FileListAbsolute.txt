@@ -1,12 +1,3 @@
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.csproj.AssemblyReference.cache
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\rpswa.dswa.cache.json
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.GeneratedMSBuildEditorConfig.editorconfig
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.AssemblyInfoInputs.cache
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.AssemblyInfo.cs
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.csproj.CoreCompileInputs.cache
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.MvcApplicationPartsAssemblyInfo.cs
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.MvcApplicationPartsAssemblyInfo.cache
-D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.sourcelink.json
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\appsettings.Development.json
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\appsettings.json
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Api.staticwebassets.endpoints.json
@@ -15,6 +6,7 @@ D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Api.runtimeconfig.json
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Api.dll
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Api.pdb
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\AutoMapper.dll
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Azure.Core.dll
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Azure.Identity.dll
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Humanizer.dll
@@ -158,6 +150,15 @@ D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Application.pdb
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Infrastructure.pdb
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Domain.pdb
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.csproj.AssemblyReference.cache
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\rpswa.dswa.cache.json
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.GeneratedMSBuildEditorConfig.editorconfig
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.AssemblyInfoInputs.cache
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.AssemblyInfo.cs
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.csproj.CoreCompileInputs.cache
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.MvcApplicationPartsAssemblyInfo.cs
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.MvcApplicationPartsAssemblyInfo.cache
+D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.sourcelink.json
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\rjimswa.dswa.cache.json
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json

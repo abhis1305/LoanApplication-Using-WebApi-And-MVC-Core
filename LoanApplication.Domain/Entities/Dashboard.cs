@@ -1,4 +1,4 @@
-﻿namespace LoanApp.Models
+﻿namespace LoanApplication.Domain.Entities
 {
     public class Dashboard
     {

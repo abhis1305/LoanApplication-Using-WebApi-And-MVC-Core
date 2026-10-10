@@ -1,6 +1,6 @@
-﻿using LoanApp.Models;
-using LoanApplication.Application.DTO;
+﻿using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
+using LoanApplication.Domain.Entities;
 using LoanApplication.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,23 +8,22 @@ namespace LoanApplication.Infrastructure.Repositories
 {
     public class ScoreCardService : IScoreCardService
     {
-        private readonly AppDBContext _context;
+        AppDBContext db;
 
-        public ScoreCardService(AppDBContext context)
+        public ScoreCardService(AppDBContext db)
         {
-            _context = context;
+            this.db = db;
         }
 
-        public async Task<ScoreCardResponseDto> GenerateScoreCardAsync(
-            int customerId)
+        public async Task<ScoreCardResponseDto> GenerateScoreCardAsync(int customerId)
         {
-            var customer = await _context.Customers
+            var customer = await db.Customers
                 .FirstOrDefaultAsync(c => c.CustomerId == customerId);
 
             if (customer == null)
                 throw new KeyNotFoundException("Customer not found.");
 
-            var cibil = await _context.CibilReports
+            var cibil = await db.CibilReports
                 .Where(c => c.CustomerId == customerId)
                 .OrderByDescending(c => c.CheckDate)
                 .ThenByDescending(c => c.CibilReportId)
@@ -67,8 +66,8 @@ namespace LoanApplication.Infrastructure.Repositories
                     EligibleLoanAmount = amount
                 };
 
-                _context.ScoreCards.Add(scoreCard);
-                await _context.SaveChangesAsync();
+                db.ScoreCards.Add(scoreCard);
+                await db.SaveChangesAsync();
 
                 savedOptions.Add(new LoanOptionDto
                 {
@@ -90,10 +89,7 @@ namespace LoanApplication.Infrastructure.Repositories
             };
         }
 
-        private static decimal CalculateLoanAmount(
-            decimal emi,
-            decimal annualRate,
-            int tenure)
+        private static decimal CalculateLoanAmount(decimal emi,decimal annualRate,int tenure)
         {
             double r = (double)annualRate / 1200.0;
             double n = tenure;

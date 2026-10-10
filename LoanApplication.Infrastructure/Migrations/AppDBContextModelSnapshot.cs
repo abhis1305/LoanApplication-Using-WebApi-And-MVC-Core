@@ -22,7 +22,7 @@ namespace LoanApplication.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LoanApp.Models.CibilReport", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.CibilReport", b =>
                 {
                     b.Property<int>("CibilReportId")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("CibilReports");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.Customer", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
@@ -107,7 +107,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.DealReview", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.DealReview", b =>
                 {
                     b.Property<int>("ReviewId")
                         .ValueGeneratedOnAdd()
@@ -134,7 +134,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("DealReviews");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.Disbursement", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Disbursement", b =>
                 {
                     b.Property<int>("DisbursementId")
                         .ValueGeneratedOnAdd()
@@ -166,7 +166,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("Disbursements");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.EligibilityResult", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.EligibilityResult", b =>
                 {
                     b.Property<int>("EligibilityId")
                         .ValueGeneratedOnAdd()
@@ -196,7 +196,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("EligibilityResults");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.EmiSchedule", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.EmiSchedule", b =>
                 {
                     b.Property<int>("EmiScheduleId")
                         .ValueGeneratedOnAdd()
@@ -242,7 +242,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("EmiSchedules");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.ForeClosureRequest", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.ForeClosureRequest", b =>
                 {
                     b.Property<int>("RequestId")
                         .ValueGeneratedOnAdd()
@@ -296,7 +296,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("ForeClosureRequests");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.InterestAccrual", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.InterestAccrual", b =>
                 {
                     b.Property<int>("AccrualId")
                         .ValueGeneratedOnAdd()
@@ -327,7 +327,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("InterestAccruals");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.KycDocument", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.KycDocument", b =>
                 {
                     b.Property<int>("DocumentId")
                         .ValueGeneratedOnAdd()
@@ -357,7 +357,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("KycDocuments");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanAccount", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanAccount", b =>
                 {
                     b.Property<int>("LoanAccountId")
                         .ValueGeneratedOnAdd()
@@ -412,7 +412,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("LoanAccounts");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanClosure", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanClosure", b =>
                 {
                     b.Property<int>("ClosureId")
                         .ValueGeneratedOnAdd()
@@ -453,7 +453,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("LoanClosures");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanDeal", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanDeal", b =>
                 {
                     b.Property<int>("DealId")
                         .ValueGeneratedOnAdd()
@@ -515,7 +515,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("LoanDeals");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanPayment", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanPayment", b =>
                 {
                     b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
@@ -564,7 +564,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("LoanPayments");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.Notification", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Notification", b =>
                 {
                     b.Property<int>("NotificationId")
                         .ValueGeneratedOnAdd()
@@ -590,7 +590,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.PenaltyCharge", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.PenaltyCharge", b =>
                 {
                     b.Property<int>("PenaltyId")
                         .ValueGeneratedOnAdd()
@@ -630,7 +630,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("PenaltyCharges");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.Role", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Role", b =>
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
@@ -647,7 +647,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.SanctionLetter", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.SanctionLetter", b =>
                 {
                     b.Property<int>("SanctionId")
                         .ValueGeneratedOnAdd()
@@ -680,7 +680,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("SanctionLetters");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.ScoreCard", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.ScoreCard", b =>
                 {
                     b.Property<int>("ScoreCardId")
                         .ValueGeneratedOnAdd()
@@ -711,7 +711,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("ScoreCards");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.SupportTicket", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.SupportTicket", b =>
                 {
                     b.Property<int>("TicketId")
                         .ValueGeneratedOnAdd()
@@ -755,7 +755,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("SupportTickets");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.User", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -798,9 +798,72 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.CibilReport", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Wallet", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.Property<int>("WalletId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WalletId"));
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WalletId");
+
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
+
+                    b.ToTable("Wallets");
+                });
+
+            modelBuilder.Entity("LoanApplication.Domain.Entities.WalletTransaction", b =>
+                {
+                    b.Property<int>("TransactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReferenceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TransactionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TransactionType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WalletId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TransactionId");
+
+                    b.HasIndex("WalletId");
+
+                    b.ToTable("WalletTransactions");
+                });
+
+            modelBuilder.Entity("LoanApplication.Domain.Entities.CibilReport", b =>
+                {
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany("CibilReports")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -809,15 +872,15 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.DealReview", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.DealReview", b =>
                 {
-                    b.HasOne("LoanApp.Models.LoanDeal", "LoanDeal")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanDeal", "LoanDeal")
                         .WithMany("DealReviews")
                         .HasForeignKey("DealId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("LoanApp.Models.User", "User")
+                    b.HasOne("LoanApplication.Domain.Entities.User", "User")
                         .WithMany("DealReviews")
                         .HasForeignKey("OfficerId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -828,9 +891,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.Disbursement", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Disbursement", b =>
                 {
-                    b.HasOne("LoanApp.Models.LoanDeal", "LoanDeal")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanDeal", "LoanDeal")
                         .WithMany("Disbursements")
                         .HasForeignKey("DealId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -839,9 +902,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanDeal");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.EligibilityResult", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.EligibilityResult", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany("EligibilityResults")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -850,9 +913,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.EmiSchedule", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.EmiSchedule", b =>
                 {
-                    b.HasOne("LoanApp.Models.LoanAccount", "LoanAccount")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanAccount", "LoanAccount")
                         .WithMany()
                         .HasForeignKey("LoanAccountId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -861,9 +924,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanAccount");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.ForeClosureRequest", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.ForeClosureRequest", b =>
                 {
-                    b.HasOne("LoanApp.Models.LoanAccount", "LoanAccount")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanAccount", "LoanAccount")
                         .WithMany()
                         .HasForeignKey("LoanAccountId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -872,9 +935,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanAccount");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.InterestAccrual", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.InterestAccrual", b =>
                 {
-                    b.HasOne("LoanApp.Models.LoanAccount", "LoanAccount")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanAccount", "LoanAccount")
                         .WithMany()
                         .HasForeignKey("LoanAccountId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -883,9 +946,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanAccount");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.KycDocument", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.KycDocument", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany("KycDocuments")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -894,15 +957,15 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanAccount", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanAccount", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("LoanApp.Models.LoanDeal", "LoanDeal")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanDeal", "LoanDeal")
                         .WithMany()
                         .HasForeignKey("DealId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -913,15 +976,15 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanDeal");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanClosure", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanClosure", b =>
                 {
-                    b.HasOne("LoanApp.Models.User", "User")
+                    b.HasOne("LoanApplication.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("ClosedBy")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("LoanApp.Models.LoanAccount", "LoanAccount")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanAccount", "LoanAccount")
                         .WithMany()
                         .HasForeignKey("LoanAccountId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -932,9 +995,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanDeal", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanDeal", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany("LoanDeals")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -943,9 +1006,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanPayment", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanPayment", b =>
                 {
-                    b.HasOne("LoanApp.Models.LoanAccount", "LoanAccount")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanAccount", "LoanAccount")
                         .WithMany()
                         .HasForeignKey("LoanAccountId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -954,15 +1017,15 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanAccount");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.PenaltyCharge", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.PenaltyCharge", b =>
                 {
-                    b.HasOne("LoanApp.Models.EmiSchedule", "EmiSchedule")
+                    b.HasOne("LoanApplication.Domain.Entities.EmiSchedule", "EmiSchedule")
                         .WithMany()
                         .HasForeignKey("EmiScheduleId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("LoanApp.Models.LoanAccount", "LoanAccount")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanAccount", "LoanAccount")
                         .WithMany()
                         .HasForeignKey("LoanAccountId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -973,9 +1036,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanAccount");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.SanctionLetter", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.SanctionLetter", b =>
                 {
-                    b.HasOne("LoanApp.Models.LoanDeal", "LoanDeal")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanDeal", "LoanDeal")
                         .WithMany("SanctionLetters")
                         .HasForeignKey("DealId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -984,9 +1047,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanDeal");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.ScoreCard", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.ScoreCard", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany("ScoreCards")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -995,15 +1058,15 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.SupportTicket", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.SupportTicket", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("LoanApp.Models.LoanAccount", "LoanAccount")
+                    b.HasOne("LoanApplication.Domain.Entities.LoanAccount", "LoanAccount")
                         .WithMany()
                         .HasForeignKey("LoanAccountId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -1014,14 +1077,14 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("LoanAccount");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.User", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.User", b =>
                 {
-                    b.HasOne("LoanApp.Models.Customer", "Customer")
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("LoanApp.Models.Role", "Role")
+                    b.HasOne("LoanApplication.Domain.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -1032,7 +1095,29 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.Customer", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Wallet", b =>
+                {
+                    b.HasOne("LoanApplication.Domain.Entities.Customer", "Customer")
+                        .WithOne()
+                        .HasForeignKey("LoanApplication.Domain.Entities.Wallet", "CustomerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("LoanApplication.Domain.Entities.WalletTransaction", b =>
+                {
+                    b.HasOne("LoanApplication.Domain.Entities.Wallet", "Wallet")
+                        .WithMany("Transactions")
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Wallet");
+                });
+
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Customer", b =>
                 {
                     b.Navigation("CibilReports");
 
@@ -1045,7 +1130,7 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("ScoreCards");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.LoanDeal", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.LoanDeal", b =>
                 {
                     b.Navigation("DealReviews");
 
@@ -1054,14 +1139,19 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Navigation("SanctionLetters");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.Role", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Role", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("LoanApp.Models.User", b =>
+            modelBuilder.Entity("LoanApplication.Domain.Entities.User", b =>
                 {
                     b.Navigation("DealReviews");
+                });
+
+            modelBuilder.Entity("LoanApplication.Domain.Entities.Wallet", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

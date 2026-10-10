@@ -1,9 +1,11 @@
 ﻿using LoanApplication.Application.DTO;
 
-namespace LoanApplication.Application.Interface;
-
-public interface ICibilService
+namespace LoanApplication.Application.Interface
 {
-    Task<CibilScoreResponseDto> GenerateScoreAsync(
-        int customerId);
+    public interface ICibilService
+    {
+        Task<CibilScoreResponseDto> GenerateScoreAsync(int customerId);
+
+        Task<CibilScoreResponseDto> GetCibilScoreAsync(int customerId);
+    }
 }

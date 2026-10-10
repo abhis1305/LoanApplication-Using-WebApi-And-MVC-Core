@@ -17,6 +17,8 @@ builder.Services.AddSwaggerGen();
 // CIBIL Service
 builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
+builder.Services.AddScoped<IEligibilityService, EligibilityService>();
+builder.Services.AddScoped<IWalletService, WalletService>();
 
 // Database Connection
 builder.Services.AddDbContext<AppDBContext>(options =>

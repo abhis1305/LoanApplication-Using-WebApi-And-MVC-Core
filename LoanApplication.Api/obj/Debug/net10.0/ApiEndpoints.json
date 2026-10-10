@@ -16,6 +16,85 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LoanApplication.Api.Controllers.CibilController",
+    "Method": "GetScore",
+    "RelativePath": "api/Cibil/GetScore/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EligibilityController",
+    "Method": "Check",
+    "RelativePath": "api/Eligibility/Check",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LoanApplication.Application.DTO.EligibilityRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EligibilityController",
+    "Method": "OfficerDecision",
+    "RelativePath": "api/Eligibility/OfficerDecision/{eligibilityId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eligibilityId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "LoanApplication.Application.DTO.OfficerDecisionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EligibilityController",
+    "Method": "PendingRequests",
+    "RelativePath": "api/Eligibility/PendingRequests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EligibilityController",
+    "Method": "GetEligibilityResult",
+    "RelativePath": "api/Eligibility/Result/{eligibilityId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eligibilityId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LoanApplication.Api.Controllers.ScoreCardController",
     "Method": "Generate",
     "RelativePath": "api/ScoreCard/Generate",
@@ -26,6 +105,181 @@
       {
         "Name": "request",
         "Type": "LoanApplication.Application.DTO.ScoreCardRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.SupportTicketController",
+    "Method": "AddTicket",
+    "RelativePath": "api/SupportTicket/AddT",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "t",
+        "Type": "LoanApplication.Application.DTO.CreateTicketDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.SupportTicketController",
+    "Method": "DeleteTicket",
+    "RelativePath": "api/SupportTicket/DeleteT/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.SupportTicketController",
+    "Method": "TicketList",
+    "RelativePath": "api/SupportTicket/GetT",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.SupportTicketController",
+    "Method": "TicketById",
+    "RelativePath": "api/SupportTicket/GetT/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.SupportTicketController",
+    "Method": "MyTicketList",
+    "RelativePath": "api/SupportTicket/MyT/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.SupportTicketController",
+    "Method": "RespondTicket",
+    "RelativePath": "api/SupportTicket/RespondT/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "LoanApplication.Application.DTO.OfficerResponseDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.WalletController",
+    "Method": "AddMoney",
+    "RelativePath": "api/Wallet/AddMoney",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "LoanApplication.Application.DTO.AddMoneyDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.WalletController",
+    "Method": "GetBalance",
+    "RelativePath": "api/Wallet/Balance/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.WalletController",
+    "Method": "CreateWallet",
+    "RelativePath": "api/Wallet/Create/{customerId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.WalletController",
+    "Method": "MakePayment",
+    "RelativePath": "api/Wallet/Pay",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "LoanApplication.Application.DTO.WalletPaymentDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.WalletController",
+    "Method": "GetTransactions",
+    "RelativePath": "api/Wallet/Transactions/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

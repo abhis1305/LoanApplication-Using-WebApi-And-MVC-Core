@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using LoanApp.Models;
 using LoanApplication.Application.DTO;
+using LoanApplication.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

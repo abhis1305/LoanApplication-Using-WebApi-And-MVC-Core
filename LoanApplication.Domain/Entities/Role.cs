@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LoanApp.Models
+namespace LoanApplication.Domain.Entities
 {
     public class Role
     {

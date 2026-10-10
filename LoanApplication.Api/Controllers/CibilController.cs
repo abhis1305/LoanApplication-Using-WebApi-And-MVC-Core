@@ -2,52 +2,62 @@
 using LoanApplication.Application.Interface;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LoanApplication.Api.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class CibilController : ControllerBase
+namespace LoanApplication.Api.Controllers
 {
-    private readonly ICibilService _service;
-
-    public CibilController(ICibilService service)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CibilController : ControllerBase
     {
-        _service = service;
-    }
+        ICibilService service;
 
-    [HttpPost("GenerateScore")]
-    public async Task<IActionResult> GenerateScore(
-        [FromBody] CibilScoreRequestDto request)
-    {
-        try
+        public CibilController(ICibilService service)
         {
-            var result = await _service.GenerateScoreAsync(
-                request.CustomerId);
+            this.service = service;
+        }
 
-            return Ok(new
-            {
-                success = true,
-                message = "Credit score generated successfully.",
-                data = result
-            });
-        }
-        catch (KeyNotFoundException ex)
+        [HttpPost]
+        [Route("GenerateScore")]
+        public async Task<IActionResult> GenerateScore(CibilScoreRequestDto request)
         {
-            return NotFound(new
+            try
             {
-                success = false,
-                message = ex.Message,
-                data = (object?)null
-            });
+                var data = await service.GenerateScoreAsync(request.CustomerId);
+
+                return Ok(new
+                {
+                    message = "Credit score generated successfully.",
+                    data = data
+                });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new
+                {
+                    message = ex.Message
+                });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.Message
+                });
+            }
         }
-        catch (ArgumentException ex)
+
+        [HttpGet]
+        [Route("GetScore/{customerId}")]
+        public async Task<IActionResult> GetScore(int customerId)
         {
-            return BadRequest(new
+            try
             {
-                success = false,
-                message = ex.Message,
-                data = (object?)null
-            });
+                var data = await service.GetCibilScoreAsync(customerId);
+                return Ok(data);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
     }
 }
