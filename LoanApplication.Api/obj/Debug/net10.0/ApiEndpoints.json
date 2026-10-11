@@ -32,6 +32,102 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LoanApplication.Api.Controllers.DashboardController",
+    "Method": "ActiveLoan",
+    "RelativePath": "api/Dashboard/ActiveLoan/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.DashboardController",
+    "Method": "Cards",
+    "RelativePath": "api/Dashboard/Cards/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.DashboardController",
+    "Method": "Documents",
+    "RelativePath": "api/Dashboard/Documents/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.DashboardController",
+    "Method": "EmiSummary",
+    "RelativePath": "api/Dashboard/EmiSummary/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.DashboardController",
+    "Method": "Progress",
+    "RelativePath": "api/Dashboard/Progress/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.DashboardController",
+    "Method": "RecentPayments",
+    "RelativePath": "api/Dashboard/RecentPayments/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LoanApplication.Api.Controllers.EligibilityController",
     "Method": "Check",
     "RelativePath": "api/Eligibility/Check",
@@ -88,6 +184,112 @@
     "Parameters": [
       {
         "Name": "eligibilityId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "AddEmiSchedule",
+    "RelativePath": "api/EmiSchedule/AddEMI",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emi",
+        "Type": "LoanApplication.Domain.Entities.EmiSchedule",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "EmiScheduleList",
+    "RelativePath": "api/EmiSchedule/GetEMI/{loanAccountId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loanAccountId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "EmiScheduleById",
+    "RelativePath": "api/EmiSchedule/GetEMIById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "UpdateEmiSchedule",
+    "RelativePath": "api/EmiSchedule/UpdateEMI",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emi",
+        "Type": "LoanApplication.Domain.Entities.EmiSchedule",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.LoanAccountController",
+    "Method": "CreateLoanAccount",
+    "RelativePath": "api/LoanAccount/CreateLA/{dealId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dealId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.LoanAccountController",
+    "Method": "LoanAccountList",
+    "RelativePath": "api/LoanAccount/GetLA",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.LoanAccountController",
+    "Method": "LoanAccountById",
+    "RelativePath": "api/LoanAccount/GetLA/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
       }
