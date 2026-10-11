@@ -21,6 +21,8 @@ builder.Services.AddScoped<IEligibilityService, EligibilityService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
+builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 
 
 // Database Connection
