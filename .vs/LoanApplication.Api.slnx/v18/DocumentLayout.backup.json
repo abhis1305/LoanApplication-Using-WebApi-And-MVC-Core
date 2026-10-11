@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261010044013_AddWalletTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LoanApplication.Infrastructure\\Migrations\\20261010044013_AddWalletTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\repositories\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\repositories\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\repositories\\supportticketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,6 +98,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.api\\loanapplication.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{ABF6949C-18FE-5C76-A025-03A13E183FFD}|LoanApplication.Api\\LoanApplication.Api.csproj|solutionrelative:loanapplication.api\\loanapplication.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|d:\\abhishek\\loanapplicationwebapi\\loanappgrp\\loanapplication.infrastructure\\migrations\\20261010044013_addwallettables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9BC83129-5395-38C2-307A-1D0452A45516}|LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj|solutionrelative:loanapplication.infrastructure\\migrations\\20261010044013_addwallettables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -107,32 +111,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SupportTicketService.cs",
-              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
-              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
-              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
-              "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAOBywBcAAAAfAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "DashboardService.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\DashboardService.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Repositories\\DashboardService.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\DashboardService.cs",
+              "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\DashboardService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:38:24.551Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "WalletDTO.cs",
-              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\WalletDTO.cs",
-              "RelativeDocumentMoniker": "LoanApplication.Application\\DTO\\WalletDTO.cs",
-              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\WalletDTO.cs",
-              "RelativeToolTip": "LoanApplication.Application\\DTO\\WalletDTO.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:31:12.054Z",
+              "WhenOpened": "2026-10-11T13:12:50.076Z",
               "EditorCaption": ""
             },
             {
@@ -145,8 +136,7 @@
               "RelativeToolTip": "LoanApplication.Api\\Controllers\\WalletController.cs",
               "ViewState": "AgIAAFAAAAAAAAAAAAAIwCAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:28:26.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:28:26.269Z"
             },
             {
               "$type": "Document",
@@ -158,8 +148,7 @@
               "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\WalletService.cs",
               "ViewState": "AgIAAKUAAAAAAAAAAAAYwM8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:27:56.342Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:27:56.342Z"
             },
             {
               "$type": "Document",
@@ -167,16 +156,40 @@
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Program.cs",
               "RelativeDocumentMoniker": "LoanApplication.Api\\Program.cs",
-              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Program.cs*",
-              "RelativeToolTip": "LoanApplication.Api\\Program.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA8AAAAAAAAAA==",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Api\\Program.cs",
+              "RelativeToolTip": "LoanApplication.Api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-10T04:16:57.247Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
+              "Title": "WalletDTO.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\WalletDTO.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Application\\DTO\\WalletDTO.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\DTO\\WalletDTO.cs",
+              "RelativeToolTip": "LoanApplication.Application\\DTO\\WalletDTO.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T04:31:12.054Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SupportTicketService.cs",
+              "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
+              "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
+              "ToolTip": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
+              "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\SupportTicketService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAOBywBcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T04:38:24.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "20261010044013_AddWalletTables.cs",
               "DocumentMoniker": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\Migrations\\20261010044013_AddWalletTables.cs",
               "RelativeDocumentMoniker": "LoanApplication.Infrastructure\\Migrations\\20261010044013_AddWalletTables.cs",
@@ -184,8 +197,7 @@
               "RelativeToolTip": "LoanApplication.Infrastructure\\Migrations\\20261010044013_AddWalletTables.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:40:14.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:40:14.552Z"
             },
             {
               "$type": "Document",
@@ -197,8 +209,7 @@
               "RelativeToolTip": "LoanApplication.Application\\Interfcae\\IWalletService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:27:21.92Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:27:21.92Z"
             },
             {
               "$type": "Document",
@@ -210,8 +221,7 @@
               "RelativeToolTip": "LoanApplication.Domain\\Entities\\WalletTransaction.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:26:56.675Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:26:56.675Z"
             },
             {
               "$type": "Document",
@@ -223,8 +233,7 @@
               "RelativeToolTip": "LoanApplication.Domain\\Entities\\Wallet.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:26:40.263Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:26:40.263Z"
             },
             {
               "$type": "Document",
@@ -236,8 +245,7 @@
               "RelativeToolTip": "LoanApplication.Application\\Mapper\\SupportTicketProfile.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:15:37.784Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:15:37.784Z"
             },
             {
               "$type": "Document",
@@ -249,8 +257,7 @@
               "RelativeToolTip": "LoanApplication.Application\\Mapper\\CIBILMappingData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:15:31.2Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:15:31.2Z"
             },
             {
               "$type": "Document",
@@ -262,8 +269,7 @@
               "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\EligibilityService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T03:31:06.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T03:31:06.392Z"
             },
             {
               "$type": "Document",
@@ -275,8 +281,7 @@
               "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\CibilService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwBEAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-09T14:39:53.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-09T14:39:53.486Z"
             },
             {
               "$type": "Document",
@@ -288,8 +293,7 @@
               "RelativeToolTip": "LoanApplication.Infrastructure\\Repositories\\ScoreCardService.cs",
               "ViewState": "AgIAAGQAAAAAAAAAAAAAAHkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T03:31:56.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T03:31:56.249Z"
             },
             {
               "$type": "Document",
@@ -301,8 +305,7 @@
               "RelativeToolTip": "LoanApplication.Api\\Controllers\\CibilController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAC0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-09T14:49:06.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-09T14:49:06.722Z"
             },
             {
               "$type": "Document",
@@ -314,8 +317,7 @@
               "RelativeToolTip": "LoanApplication.Application\\DTO\\CibilScoreResponseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T04:14:18.837Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T04:14:18.837Z"
             },
             {
               "$type": "Document",
@@ -327,8 +329,7 @@
               "RelativeToolTip": "..\\AugBatch2026WebAPI\\AugBatch2026WebAPI\\AugBatch2026WebAPI\\Services\\EmpService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T03:27:21.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T03:27:21.722Z"
             },
             {
               "$type": "Document",
@@ -340,8 +341,7 @@
               "RelativeToolTip": "..\\AugBatch2026WebAPI\\AugBatch2026WebAPI\\AugBatch2026WebAPI\\Controllers\\EmployeeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T03:47:51.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T03:47:51.326Z"
             },
             {
               "$type": "Document",
@@ -353,8 +353,7 @@
               "RelativeToolTip": "..\\AugBatch2026WebAPI\\AugBatch2026WebAPI\\AugBatch2026WebAPI\\Mapper\\MappingData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-10T03:37:05.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-10T03:37:05.161Z"
             },
             {
               "$type": "Document",
@@ -427,16 +426,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2026-10-08T14:37:44.91Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 184,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

@@ -1,4 +1,6 @@
 using LoanApplication.Application.Interface;
+using LoanApplication.Application.Interfcae;
+using LoanApplication.Application.Mapper;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,9 @@ builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
+builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
+
 
 // Database Connection
 builder.Services.AddDbContext<AppDBContext>(options =>
@@ -24,9 +29,7 @@ builder.Services.AddDbContext<AppDBContext>(options =>
         builder.Configuration.GetConnectionString("dbconn")
     ));
 
-builder.Services.AddMemoryCache();                        // "create the notebook (cache)"
-builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
-builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddMemoryCache();                       // "create the notebook (cache)"
 builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
 
 var app = builder.Build();
