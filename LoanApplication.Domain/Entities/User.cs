@@ -24,6 +24,8 @@ namespace LoanApp.Models
         public string Mobile { get; set; }
 
         public string Password { get; set; }
+        public bool IsTwoFactorEnabled { get; set; } = false;
+        public string? TwoFactorSecret { get; set; }
 
         public Role? Role { get; set; }
 

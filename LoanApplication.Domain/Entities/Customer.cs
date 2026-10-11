@@ -56,8 +56,11 @@ namespace LoanApp.Models
         [Range(1000, 10000000,
             ErrorMessage = "Enter valid income")]
         public decimal MonthlyIncome { get; set; }
+        public decimal MonthlyInvestment { get; set; }
 
         public bool IsEmailVerified { get; set; } = false;
+        public bool IsTwoFactorEnabled { get; set; } = false;
+        public string? TwoFactorSecret { get; set; }
 
         // Navigation Properties
         public ICollection<KycDocument>? KycDocuments { get; set; }
