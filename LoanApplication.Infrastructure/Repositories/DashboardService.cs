@@ -1,4 +1,4 @@
-﻿using LoanApp.Models;
+﻿using LoanApplication.Domain.Entities;
 using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Infrastructure.Data;
