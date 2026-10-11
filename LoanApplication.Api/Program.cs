@@ -1,4 +1,6 @@
+using LoanApplication.Application.Interface;
 using LoanApplication.Application.Interfcae;
+using LoanApplication.Application.Mapper;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,18 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Controllers
 builder.Services.AddControllers();
 
-// Swagger
+// Swagger with JWT Bearer Authentication
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
-    // JWT Bearer
     options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
     {
         Type = SecuritySchemeType.Http,
         Scheme = "bearer",
         BearerFormat = "JWT",
-        Description = "Enter JWT token"
+        Description = "Enter JWT access token"
     });
 
     options.AddSecurityRequirement(document =>
@@ -33,16 +34,37 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
-// Database
+// Authentication Service
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+// Team Services
+builder.Services.AddScoped<ICibilService, CibilService>();
+builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
+builder.Services.AddScoped<IEligibilityService, EligibilityService>();
+builder.Services.AddScoped<IWalletService, WalletService>();
+builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
+builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
+
+// Memory Cache and AutoMapper
+builder.Services.AddMemoryCache();
+builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+
+// Database Connection
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("dbconn")
     ));
 
-// Auth Service
-builder.Services.AddScoped<IAuthService, AuthService>();
+// JWT Configuration
+var jwtKey = builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException(
+        "Jwt:Key is not configured.");
 
-// JWT Authentication
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "LoanAppAPI";
+var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "LoanAppClients";
+
 builder.Services.AddAuthentication(
     JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -50,17 +72,16 @@ builder.Services.AddAuthentication(
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(
-                    builder.Configuration["Jwt:Key"]!
-                )
+                Encoding.UTF8.GetBytes(jwtKey)
             ),
 
             ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidIssuer = jwtIssuer,
+
             ValidateAudience = true,
-            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidAudience = jwtAudience,
+
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero
         };
@@ -70,6 +91,8 @@ builder.Services.AddAuthentication(
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+// Serve google-test.html and other static files
 app.UseStaticFiles();
 
 // Swagger
@@ -82,7 +105,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();

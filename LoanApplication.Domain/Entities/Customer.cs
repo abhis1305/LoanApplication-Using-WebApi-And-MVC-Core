@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanApp.Models
+namespace LoanApplication.Domain.Entities
+
 {
     public class Customer
     {
@@ -46,6 +48,8 @@ namespace LoanApp.Models
         public decimal? MonthlyIncome { get; set; }
 
         public decimal? MonthlyInvestment { get; set; }
+
+        public decimal MonthlyInvestement { get; set; }
 
         public bool IsEmailVerified { get; set; } = false;
         public bool IsTwoFactorEnabled { get; set; } = false;

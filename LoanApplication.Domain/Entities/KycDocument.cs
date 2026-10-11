@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LoanApp.Models
+namespace LoanApplication.Domain.Entities
 {
     public class KycDocument
     {
