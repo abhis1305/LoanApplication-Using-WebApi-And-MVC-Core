@@ -29,7 +29,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 builder.Services.AddMemoryCache();                        // "create the notebook (cache)"
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
-builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+//builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(SupportTicketProfile).Assembly));
 
 var app = builder.Build();
 
