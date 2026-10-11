@@ -1,8 +1,10 @@
 ﻿using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interfcae;
+using LoanApplication.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+
 
 namespace LoanApplication.Api.Controllers
 {
@@ -55,8 +57,53 @@ namespace LoanApplication.Api.Controllers
             return Ok(result);
         }
 
+        // COMPLETE PROFILE
+        [Authorize]
+        [HttpPut("complete-profile")]
+        public async Task<IActionResult> CompleteProfile(
+            [FromBody] CompleteProfileDto dto)
+        {
+            // Require a full access token, not a 2FA pre-auth token.
+            var purpose = User.FindFirst("Purpose")?.Value;
+            if (purpose != "Access")
+            {
+                return Unauthorized(new
+                {
+                    message = "A valid access token is required."
+                });
+            }
+            // Get the user ID from the authenticated token.
+            var userIdValue = User.FindFirstValue(
+                ClaimTypes.NameIdentifier);
+
+            if (!int.TryParse(userIdValue, out int userId))
+            {
+                return Unauthorized(new
+                {
+                    message = "Invalid user identity."
+                });
+            }
+
+            // Call the service
+            var result = await service.CompleteProfileAsync(
+                userId, dto);
+
+            if (!result)
+            {
+                return NotFound(new
+                {
+                    message = "User or customer profile not found."
+                });
+            }
+
+            return Ok(new
+            {
+                message = "Profile completed successfully."
+            });
+        }
+
         // VERIFY 2FA
-        
+
         [HttpPost("verify-2fa")]
         public async Task<IActionResult> VerifyTwoFactor(Verify2FaDto dto)
         {

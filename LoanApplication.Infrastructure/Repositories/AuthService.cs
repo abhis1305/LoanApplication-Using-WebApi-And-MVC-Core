@@ -10,6 +10,8 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Google.Apis.Auth;
+using Google.Apis.Auth;
+using Microsoft.Extensions.Configuration;
 
 namespace LoanApplication.Infrastructure.Repositories
 {
@@ -67,9 +69,23 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
         // LOGIN
+        // LOGIN
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto)
         {
+            // 1. Validate email and password input
+            if (string.IsNullOrWhiteSpace(dto.Email) ||
+                string.IsNullOrWhiteSpace(dto.Password))
+            {
+                return new AuthResponseDto
+                {
+                    Message = "Invalid email or password."
+                };
+            }
+
+            // 2. Find user with Role details
             var user = await db.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.Email == dto.Email);
+
+            // 3. Check whether user exists
             if (user == null)
             {
                 return new AuthResponseDto
@@ -78,6 +94,16 @@ namespace LoanApplication.Infrastructure.Repositories
                 };
             }
 
+            // 4. Google-only users may not have a password
+            if (string.IsNullOrWhiteSpace(user.Password))
+            {
+                return new AuthResponseDto
+                {
+                    Message = "Invalid email or password."
+                };
+            }
+
+            // 5. Verify password
             bool passwordValid = VerifyPassword(
                 dto.Password,
                 user.Password
@@ -90,61 +116,171 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "Invalid email or password."
                 };
             }
+
+            // 6. Continue login or 2FA flow
             return ProcessUserLoginFlow(user);
         }
-
         // GOOGLE LOGIN
         public async Task<AuthResponseDto> GoogleLoginAsync(GoogleAuthDto dto)
         {
-            string email = await ExtractEmailFromGoogleToken(dto.IdToken);
-
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrWhiteSpace(dto.IdToken))
             {
                 return new AuthResponseDto
                 {
-                    Message = "Invalid Google token."
+                    Message = "Google ID token is required."
                 };
             }
 
-            var user = await db.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.Email == email);
+            var clientId = config["Google:ClientId"];
 
-            // User does not exist
-            if (user == null)
+            if (string.IsNullOrWhiteSpace(clientId))
             {
-                var customer = new Customer
+                return new AuthResponseDto
                 {
-                    FirstName = "GoogleUser",
-                    LastName = "OAuth",
-                    Age = 25,
-                    Email = email,
-                    Password = HashPassword("GoogleUser"),
-                    MobileNo = "9999999999",
-                    Pan = "ABCDE1234F",
-                    AadhaarNo = "100020003000",
-                    EmploymentType = "Salaried",
-                    MonthlyIncome = 30000,
-                    MonthlyInvestment = 5000,
-                    IsEmailVerified = true
+                    Message = "Google Client ID is not configured."
                 };
-                db.Customers.Add(customer);
-                await db.SaveChangesAsync();
-                user = new User
-                {
-                    FirstName = "GoogleUser",
-                    LastName = "OAuth",
-                    Email = email,
-                    Mobile = "9999999999",
-                    Password = HashPassword("GoogleUser"),
-                    RoleId = 2,
-                    CustomerId = customer.CustomerId,
-                    IsTwoFactorEnabled = false
-                };
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
-                // Role navigation was not loaded for newly created user
-                user.Role = await db.Roles.FirstOrDefaultAsync(r => r.RoleId == 1);
             }
+
+            GoogleJsonWebSignature.Payload googleUser;
+
+            try
+            {
+                googleUser = await GoogleJsonWebSignature.ValidateAsync(
+                    dto.IdToken,
+                    new GoogleJsonWebSignature.ValidationSettings
+                    {
+                        Audience = new[] { clientId }
+                    });
+            }
+            catch
+            {
+                return new AuthResponseDto
+                {
+                    Message = "Invalid or expired Google ID token."
+                };
+            }
+
+            if (string.IsNullOrWhiteSpace(googleUser.Email) ||
+                googleUser.EmailVerified != true)
+            {
+                return new AuthResponseDto
+                {
+                    Message = "Google email is missing or not verified."
+                };
+            }
+
+            var email = googleUser.Email.Trim().ToLowerInvariant();
+
+            var firstName = !string.IsNullOrWhiteSpace(googleUser.GivenName)
+                ? googleUser.GivenName
+                : googleUser.Name ?? email.Split('@')[0];
+
+            var lastName = googleUser.FamilyName ?? string.Empty;
+
+            var user = await db.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(u => u.Email == email);
+
+            // Existing user: continue the normal login/2FA flow.
+            if (user != null)
+            {
+                user.Role ??= await db.Roles
+                    .FirstOrDefaultAsync(r => r.RoleId == user.RoleId);
+
+                return ProcessUserLoginFlow(user);
+            }
+
+            // New Google user: find the Customer role.
+            var customerRole = await db.Roles
+                .FirstOrDefaultAsync(r => r.RoleId == 1);
+
+            if (customerRole == null)
+            {
+                return new AuthResponseDto
+                {
+                    Message = "Customer role is not configured."
+                };
+            }
+
+            await using var transaction =
+                await db.Database.BeginTransactionAsync();
+
+            var customer = new Customer
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                IsEmailVerified = true,
+
+                // Collect these details later from the customer.
+                Password = null,
+                Age = null,
+                MobileNo = null,
+                Pan = null,
+                AadhaarNo = null,
+                EmploymentType = null,
+                MonthlyIncome = null,
+                MonthlyInvestment = null
+            };
+
+            db.Customers.Add(customer);
+            await db.SaveChangesAsync();
+
+            user = new User
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Password = null,
+                Mobile = null,
+                RoleId = customerRole.RoleId,
+                CustomerId = customer.CustomerId,
+                IsTwoFactorEnabled = false,
+                Role = customerRole
+            };
+
+            db.Users.Add(user);
+            await db.SaveChangesAsync();
+
+            await transaction.CommitAsync();
+
             return ProcessUserLoginFlow(user);
+        }
+
+        // COMPLETE PROFILE
+        public async Task<bool> CompleteProfileAsync(
+            int userId,
+            CompleteProfileDto dto)
+        {
+            // 1. Find the logged-in user
+            var user = await db.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null || user.CustomerId == null)
+            {
+                return false;
+            }
+            // 2. Find that user's existing Customer record
+            var customer = await db.Customers.FirstOrDefaultAsync(c => c.CustomerId == user.CustomerId.Value);
+            if (customer == null)
+            {
+                return false;
+            }
+
+            // 3. Fill the profile fields that are currently missing.
+            customer.Age ??= dto.Age;
+            customer.MobileNo ??= dto.MobileNo;
+            customer.Pan ??= dto.Pan;
+            customer.AadhaarNo ??= dto.AadhaarNo;
+            customer.EmploymentType ??= dto.EmploymentType;
+            customer.MonthlyIncome ??= dto.MonthlyIncome;
+            customer.MonthlyInvestment ??= dto.MonthlyInvestment;
+            // Keep User.Mobile in sync when it has no value.
+            if (string.IsNullOrWhiteSpace(user.Mobile))
+            {
+                user.Mobile = dto.MobileNo;
+            }
+           
+            await db.SaveChangesAsync();
+            return true;
         }
 
         // VERIFY 2FA
@@ -231,7 +367,7 @@ namespace LoanApplication.Infrastructure.Repositories
         // JWT TOKEN
         private string GenerateJwtToken(User user,bool isPreAuth)
         {
-            string keyValue =config["Jwt:Key"]?? "SUPER_SECRET_KEY_1234567890_JWT_LOAN_APP";
+            string keyValue = config["Jwt:Key"]?? throw new InvalidOperationException("Jwt:Key is not configured.");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue));
 
             var credentials =new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
@@ -264,7 +400,7 @@ namespace LoanApplication.Infrastructure.Repositories
             try
             {
                 var handler = new JwtSecurityTokenHandler();
-                string keyValue =config["Jwt:Key"]?? "SUPER_SECRET_KEY_1234567890_JWT_LOAN_APP";
+                string keyValue = config["Jwt:Key"]?? throw new InvalidOperationException("Jwt:Key is not configured.");
                 var key = Encoding.UTF8.GetBytes(keyValue);
                 var parameters =new TokenValidationParameters
                     {

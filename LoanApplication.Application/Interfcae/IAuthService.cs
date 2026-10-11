@@ -13,5 +13,7 @@ namespace LoanApplication.Application.Interfcae
         Task<AuthResponseDto> GoogleLoginAsync(GoogleAuthDto dto);
         Task<AuthResponseDto> VerifyTwoFactorAsync(Verify2FaDto dto);//verify 2fa
         Task<Setup2FaDto> EnableTwoFactorAsync(int userId);//enable 2fa
+
+        Task<bool> CompleteProfileAsync(int userId,CompleteProfileDto dto);
     }
 }
