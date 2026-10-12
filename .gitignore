@@ -9,9 +9,9 @@ obj/
 **/bin/
 **/obj/
 
-# IDE user files
+# User-specific files
 *.user
 *.suo
 
-# Visual Studio Code
+# IDE files
 .vscode/
