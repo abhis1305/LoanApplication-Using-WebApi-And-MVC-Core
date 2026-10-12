@@ -1,18 +1,17 @@
+
 # Visual Studio
 .vs/
-*.user
-*.suo
-*.rsuser
+**/.vs/
 
-# Build files
+# Build output
+bin/
+obj/
 **/bin/
 **/obj/
 
-# Visual Studio Code
+# User-specific files
+*.user
+*.suo
+
+# IDE files
 .vscode/
-
-# Rider
-.idea/
-
-# Logs
-*.log

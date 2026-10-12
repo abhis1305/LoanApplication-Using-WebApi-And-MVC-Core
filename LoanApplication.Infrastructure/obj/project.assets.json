@@ -3922,23 +3922,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rohit saw\\.nuget\\packages\\": {},
+    "C:\\Users\\THANKS\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\THANKS\\Desktop\\Projects\\LoanApplication\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
       "projectName": "LoanApplication.Infrastructure",
-      "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Rohit saw\\.nuget\\packages\\",
-      "outputPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\THANKS\\Desktop\\Projects\\LoanApplication\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\THANKS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\THANKS\\Desktop\\Projects\\LoanApplication\\LoanApplication.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Rohit saw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\THANKS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3955,11 +3955,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj": {
-              "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj"
+            "C:\\Users\\THANKS\\Desktop\\Projects\\LoanApplication\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+              "projectPath": "C:\\Users\\THANKS\\Desktop\\Projects\\LoanApplication\\LoanApplication.Application\\LoanApplication.Application.csproj"
             },
-            "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
-              "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
+            "C:\\Users\\THANKS\\Desktop\\Projects\\LoanApplication\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+              "projectPath": "C:\\Users\\THANKS\\Desktop\\Projects\\LoanApplication\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
             }
           }
         }
@@ -4022,7 +4022,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
