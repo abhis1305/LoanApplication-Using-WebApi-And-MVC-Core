@@ -1,5 +1,5 @@
 ﻿using LoanApplication.Application.DTO;
-using LoanApplication.Application.Interfcae;
+using LoanApplication.Application.Interface;
 using LoanApplication.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

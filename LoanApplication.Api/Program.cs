@@ -1,7 +1,6 @@
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
 using LoanApplication.Application.Interface;
-using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
@@ -61,8 +60,6 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     ));
 
 builder.Services.AddMemoryCache();                        // "create the notebook (cache)"
-builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
-builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
 //builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(SupportTicketProfile).Assembly));
 // JWT Configuration
