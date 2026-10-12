@@ -18,3 +18,19 @@ D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Domain\obj\Debug\ne
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.genruntimeconfig.cache
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Domain\obj\Debug\net10.0\ref\LoanApplication.Domain.dll
 D:\Abhishek\LoanApplicationWebApi\LoanAppGrp\LoanApplication.Domain\obj\Debug\net10.0\LoanAppl.D8382572.Up2Date
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\bin\Debug\net10.0\LoanApplication.Domain.deps.json
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\bin\Debug\net10.0\LoanApplication.Domain.runtimeconfig.json
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\bin\Debug\net10.0\LoanApplication.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\bin\Debug\net10.0\LoanApplication.Domain.pdb
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.csproj.AssemblyReference.cache
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.AssemblyInfoInputs.cache
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.AssemblyInfo.cs
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.sourcelink.json
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\refint\LoanApplication.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.pdb
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanApplication.Domain.genruntimeconfig.cache
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\ref\LoanApplication.Domain.dll
+C:\Users\Sampada Bagawe\source\repos\LoanApplication-Using-WebApi-And-MVC-Core\LoanApplication.Domain\obj\Debug\net10.0\LoanAppl.D8382572.Up2Date

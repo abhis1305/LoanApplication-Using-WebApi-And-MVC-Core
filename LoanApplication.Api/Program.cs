@@ -1,7 +1,10 @@
+
 using LoanApplication.Application.Interface;
+using LoanApplication.Application.Interfcae;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using LoanApplication.Application.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +21,11 @@ builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
 
+builder.Services.AddScoped<ILoanDealService, LoanDealService>();
+builder.Services.AddScoped<ISanctionLetterService, SanctionLetterService>();
+builder.Services.AddScoped<IEmailService, EmailServices>();
+builder.Services.AddScoped< IDisbursementService, DisbursementService>();
+
 // Database Connection
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(
@@ -27,8 +35,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 builder.Services.AddMemoryCache();                        // "create the notebook (cache)"
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
-builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
-
+//builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+builder.Services.AddAutoMapper(cfg => { }, typeof(SupportTicketProfile).Assembly);
 var app = builder.Build();
 
 // Swagger Middleware

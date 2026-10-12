@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {}
+    "C:\\Users\\Sampada Bagawe\\source\\repos\\LoanApplication-Using-WebApi-And-MVC-Core\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {}
   },
   "projects": {
-    "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+    "C:\\Users\\Sampada Bagawe\\source\\repos\\LoanApplication-Using-WebApi-And-MVC-Core\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Sampada Bagawe\\source\\repos\\LoanApplication-Using-WebApi-And-MVC-Core\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
         "projectName": "LoanApplication.Domain",
-        "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
-        "packagesPath": "C:\\Users\\Rohit saw\\.nuget\\packages\\",
-        "outputPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Sampada Bagawe\\source\\repos\\LoanApplication-Using-WebApi-And-MVC-Core\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "packagesPath": "C:\\Users\\Sampada Bagawe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sampada Bagawe\\source\\repos\\LoanApplication-Using-WebApi-And-MVC-Core\\LoanApplication.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rohit saw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sampada Bagawe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
