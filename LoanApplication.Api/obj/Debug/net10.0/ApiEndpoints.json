@@ -95,6 +95,102 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "AddEmiSchedule",
+    "RelativePath": "api/EmiSchedule/AddEMI",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emi",
+        "Type": "LoanApplication.Domain.Entities.EmiSchedule",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "EmiScheduleList",
+    "RelativePath": "api/EmiSchedule/GetEMI/{loanAccountId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loanAccountId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "EmiScheduleById",
+    "RelativePath": "api/EmiSchedule/GetEMIById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "UpdateEmiSchedule",
+    "RelativePath": "api/EmiSchedule/UpdateEMI",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emi",
+        "Type": "LoanApplication.Domain.Entities.EmiSchedule",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.LoanAccountController",
+    "Method": "CreateLoanAccount",
+    "RelativePath": "api/LoanAccount/CreateLA/{dealId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dealId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.LoanAccountController",
+    "Method": "LoanAccountById",
+    "RelativePath": "api/LoanAccount/GetLA/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LoanApplication.Api.Controllers.ScoreCardController",
     "Method": "Generate",
     "RelativePath": "api/ScoreCard/Generate",

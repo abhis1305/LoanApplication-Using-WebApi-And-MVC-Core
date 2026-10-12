@@ -19,23 +19,29 @@ namespace LoanApplication.Api.Controllers
         public async Task<IActionResult> CreateLoanAccount(int dealId)
         {
             var account = await loan.CreateLoanAccount(dealId);
+
             return Ok(new
             {
-                message = "Loan Account Created Success",
-                data = account
+                message = "Loan Account Created Successfully",
+                data = new
+                {
+                    account.LoanAccountId,
+                    account.DealId,
+                    account.CustomerId,
+                    account.LoanAccountNo,
+                    account.LoanAmount,
+                    account.OutstandingPrincipal,
+                    account.LoanStatus,
+                    account.InterestRate,
+                    account.TenureMonths,
+                    account.EmiAmount,
+                    account.DisbursementDate,
+                    account.TotalPaidAmount,
+                    account.CreatedAt
+                }
             });
         }
-
-        [HttpGet]
-        [Route("GetLA")]
-        public async Task<IActionResult> LoanAccountList()
-        {
-            return Ok(new
-            {
-                message = "Use GetLA/{id} to fetch a specific loan account"
-            });
-        }
-
+      
         [HttpGet]
         [Route("GetLA/{id}")]
         public async Task<IActionResult> LoanAccountById(int id)

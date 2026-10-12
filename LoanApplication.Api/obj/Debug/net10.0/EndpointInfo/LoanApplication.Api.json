@@ -167,6 +167,160 @@
         }
       }
     },
+    "/api/EmiSchedule/AddEMI": {
+      "post": {
+        "tags": [
+          "EmiSchedule"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiSchedule"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiSchedule"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiSchedule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EmiSchedule/GetEMI/{loanAccountId}": {
+      "get": {
+        "tags": [
+          "EmiSchedule"
+        ],
+        "parameters": [
+          {
+            "name": "loanAccountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EmiSchedule/GetEMIById/{id}": {
+      "get": {
+        "tags": [
+          "EmiSchedule"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EmiSchedule/UpdateEMI": {
+      "put": {
+        "tags": [
+          "EmiSchedule"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiSchedule"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiSchedule"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiSchedule"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/LoanAccount/CreateLA/{dealId}": {
+      "post": {
+        "tags": [
+          "LoanAccount"
+        ],
+        "parameters": [
+          {
+            "name": "dealId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/LoanAccount/GetLA/{id}": {
+      "get": {
+        "tags": [
+          "LoanAccount"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/ScoreCard/Generate": {
       "post": {
         "tags": [
@@ -548,6 +702,35 @@
         },
         "additionalProperties": false
       },
+      "CibilReport": {
+        "type": "object",
+        "properties": {
+          "cibilReportId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "panNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "cibilScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "checkDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          }
+        },
+        "additionalProperties": false
+      },
       "CibilScoreRequestDto": {
         "type": "object",
         "properties": {
@@ -594,12 +777,465 @@
         },
         "additionalProperties": false
       },
+      "Customer": {
+        "required": [
+          "aadhaarNo",
+          "age",
+          "email",
+          "employmentType",
+          "firstName",
+          "lastName",
+          "mobileNo",
+          "monthlyIncome",
+          "pan",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z]{2,12}$",
+            "type": "string"
+          },
+          "lastName": {
+            "minLength": 1,
+            "pattern": "^[A-Za-z]{2,12}$",
+            "type": "string"
+          },
+          "age": {
+            "maximum": 60,
+            "minimum": 18,
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mobileNo": {
+            "minLength": 1,
+            "pattern": "^[6-9]\\d{9}$",
+            "type": "string"
+          },
+          "pan": {
+            "minLength": 1,
+            "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$",
+            "type": "string"
+          },
+          "aadhaarNo": {
+            "minLength": 1,
+            "pattern": "^[0-9]{12}$",
+            "type": "string"
+          },
+          "employmentType": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "monthlyIncome": {
+            "maximum": 10000000,
+            "minimum": 1000,
+            "type": "number",
+            "format": "double"
+          },
+          "monthlyInvestement": {
+            "type": "number",
+            "format": "double"
+          },
+          "isEmailVerified": {
+            "type": "boolean"
+          },
+          "kycDocuments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KycDocument"
+            },
+            "nullable": true
+          },
+          "cibilReports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CibilReport"
+            },
+            "nullable": true
+          },
+          "eligibilityResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EligibilityResult"
+            },
+            "nullable": true
+          },
+          "scoreCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScoreCard"
+            },
+            "nullable": true
+          },
+          "loanDeals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoanDeal"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DealReview": {
+        "type": "object",
+        "properties": {
+          "reviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dealId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "officerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanDeal": {
+            "$ref": "#/components/schemas/LoanDeal"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Disbursement": {
+        "type": "object",
+        "properties": {
+          "disbursementId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dealId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "disburseAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "bankPartner": {
+            "type": "string",
+            "nullable": true
+          },
+          "disbursementDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanDeal": {
+            "$ref": "#/components/schemas/LoanDeal"
+          }
+        },
+        "additionalProperties": false
+      },
       "EligibilityRequestDto": {
         "type": "object",
         "properties": {
           "customerId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EligibilityResult": {
+        "type": "object",
+        "properties": {
+          "eligibilityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cibilScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isEligible": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "rejectionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmiSchedule": {
+        "type": "object",
+        "properties": {
+          "emiScheduleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanAccountId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "installmentNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "emi": {
+            "type": "number",
+            "format": "double"
+          },
+          "principalAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "interestAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "openingBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "closingBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "paymentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "paidDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "loanAccount": {
+            "$ref": "#/components/schemas/LoanAccount"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KycDocument": {
+        "type": "object",
+        "properties": {
+          "documentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "filePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "verificationStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoanAccount": {
+        "type": "object",
+        "properties": {
+          "loanAccountId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dealId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "outstandingPrincipal": {
+            "type": "number",
+            "format": "double"
+          },
+          "loanStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "interestRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "tenureMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "emiAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "disbursementDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalPaidAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          },
+          "loanDeal": {
+            "$ref": "#/components/schemas/LoanDeal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoanDeal": {
+        "required": [
+          "bankAccountNumber",
+          "bankName",
+          "emiDay",
+          "ifscCode"
+        ],
+        "type": "object",
+        "properties": {
+          "dealId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanType": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "interestRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "tenureMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "emiAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "bankName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bankAccountNumber": {
+            "minLength": 1,
+            "pattern": "^[0-9]{9,18}$",
+            "type": "string"
+          },
+          "ifscCode": {
+            "minLength": 1,
+            "pattern": "^[A-Z]{4}0[A-Z0-9]{6}$",
+            "type": "string"
+          },
+          "emiDay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "approvedAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "appliedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          },
+          "dealReviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DealReview"
+            },
+            "nullable": true
+          },
+          "sanctionLetters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SanctionLetter"
+            },
+            "nullable": true
+          },
+          "disbursements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Disbursement"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -635,12 +1271,155 @@
         },
         "additionalProperties": false
       },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SanctionLetter": {
+        "type": "object",
+        "properties": {
+          "sanctionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dealId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loanAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "interestRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "tenureMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "emiAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "loanDeal": {
+            "$ref": "#/components/schemas/LoanDeal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScoreCard": {
+        "type": "object",
+        "properties": {
+          "scoreCardId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "riskCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "interestRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "tenureInMonths": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eligibleLoanAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          }
+        },
+        "additionalProperties": false
+      },
       "ScoreCardRequestDto": {
         "type": "object",
         "properties": {
           "customerId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer"
+          },
+          "dealReviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DealReview"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -699,6 +1478,12 @@
     },
     {
       "name": "Eligibility"
+    },
+    {
+      "name": "EmiSchedule"
+    },
+    {
+      "name": "LoanAccount"
     },
     {
       "name": "ScoreCard"

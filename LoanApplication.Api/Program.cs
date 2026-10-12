@@ -1,7 +1,10 @@
 using LoanApplication.Application.Interface;
+using LoanApplication.Application.Interfcae;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Hangfire;
+using Hangfire.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,8 @@ builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
+builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
+builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 
 // Database Connection
 builder.Services.AddDbContext<AppDBContext>(options =>
@@ -24,7 +29,16 @@ builder.Services.AddDbContext<AppDBContext>(options =>
         builder.Configuration.GetConnectionString("dbconn")
     ));
 
+// HnagFire connection
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(
+        builder.Configuration.GetConnectionString("dbconn")));
+
+builder.Services.AddHangfireServer();
+
 var app = builder.Build();
+
+app.UseHangfireDashboard();
 
 // Swagger Middleware
 if (app.Environment.IsDevelopment())
