@@ -10,9 +10,11 @@ namespace LoanApplication.Api.Controllers
     public class EmiScheduleController : ControllerBase
     {
         IEmiScheduleRepository service;
-        public EmiScheduleController(IEmiScheduleRepository service)
+        IEmiReminderRepository emiRepo;
+        public EmiScheduleController(IEmiScheduleRepository service, IEmiReminderRepository emiRepo)
         {
             this.service = service;
+            this.emiRepo = emiRepo;
         }
 
         [HttpPost]
@@ -57,6 +59,14 @@ namespace LoanApplication.Api.Controllers
                 return NotFound(new { message = "EMI Schedule Not Found" });
             }
             return Ok(new { message = "EMI Schedule Updated Successfully", data = d });
+        }
+
+        [HttpPost]
+        [Route("UpcomingEmis")]
+        public async Task<IActionResult> CheckUpcomingEmis()
+        {
+            await emiRepo.CheckUpcomingEmis();
+            return Ok(new { message = "EMI Reminders Checked Successfully" });
         }
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\LoanApplication.Api.csproj": {}
+    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\LoanApplication.Api.csproj": {
+    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\LoanApplication.Api.csproj",
+        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj",
         "projectName": "LoanApplication.Api",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\LoanApplication.Api.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\obj\\",
+        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj",
+        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -34,11 +34,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj"
+              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj"
               },
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj"
+              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj"
               }
             }
           }
@@ -60,6 +60,18 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[10.0.12, )"
@@ -534,20 +546,20 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj",
+        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj",
         "projectName": "LoanApplication.Application",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\obj\\",
+        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj",
+        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -564,8 +576,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
+              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
               }
             }
           }
@@ -594,6 +606,18 @@
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.77.0, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -914,20 +938,20 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
         "projectName": "LoanApplication.Domain",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\obj\\",
+        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -963,6 +987,18 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -1278,20 +1314,20 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
+    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
         "projectName": "LoanApplication.Infrastructure",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1308,11 +1344,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj"
+              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj"
               },
-              "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
+              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
               }
             }
           }
@@ -1341,6 +1377,18 @@
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.77.0, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
