@@ -122,16 +122,25 @@ namespace LoanApplication.Infrastructure.Repositories
             // Return generated score details
             return new CibilScoreResponseDto
             {
-                CibilReportId = report.CibilReportId,
+             //   CibilReportId = report.CibilReportId,
                 CustomerId = customer.CustomerId,
+<<<<<<< Updated upstream
                 PanNo = report.PanNo,
                 IncomeScore = incomeScore,
                 EmploymentScore = employmentScore,
                 AgeScore = ageScore,
                 FOIR = foir,
                 FOIRScore = foirScore,
+=======
+                PanNo = customer.Pan,
+              //  IncomeScore = incomeScore,
+              //  EmploymentScore = employmentScore,
+              //  AgeScore = ageScore,
+              //  FOIR = foir,
+              //  FOIRScore = foirScore,
+>>>>>>> Stashed changes
                 CibilScore = finalScore,
-                CibilStatus = status,
+            //    CibilStatus = status,
                 CheckDate = report.CheckDate
             };
         }
