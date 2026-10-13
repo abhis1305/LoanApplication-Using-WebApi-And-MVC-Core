@@ -35,6 +35,7 @@ builder.Services.AddScoped<IReportService, ReportService>();
 // 3. Register penalty, payment and authentication services
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
+builder.Services.AddScoped<IKycService, KycService>();
   
 // Penalty service 
 builder.Services.AddScoped<IPenaltyService, PenaltyService>();
@@ -103,6 +104,15 @@ builder.Services
             };
     });
 
+// Authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AccessTokenOnly", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("Purpose", "Access");
+    });
+});
 // 8. Configure authorization
 builder.Services.AddAuthorization();
 
