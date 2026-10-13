@@ -60,9 +60,9 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
-            "AutoMapper": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[16.2.0, )"
+              "version": "[10.0.12, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -83,6 +83,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.12, )"
+            },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[2.12.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -587,6 +591,10 @@
               "target": "Package",
               "version": "[16.2.0, )"
             },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.77.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -602,6 +610,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.12, )"
+            },
+            "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",
@@ -951,10 +963,6 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[16.2.0, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -1330,6 +1338,10 @@
               "target": "Package",
               "version": "[16.2.0, )"
             },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.77.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -1346,9 +1358,9 @@
               "target": "Package",
               "version": "[10.0.12, )"
             },
-            "Swashbuckle.AspNetCore.SwaggerGen": {
+            "Microsoft.Extensions.Configuration.Binder": {
               "target": "Package",
-              "version": "[10.3.0, )"
+              "version": "[10.0.12, )"
             }
           },
           "imports": [
