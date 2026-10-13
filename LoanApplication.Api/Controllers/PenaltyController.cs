@@ -1,7 +1,9 @@
 ﻿using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interfcae;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace LoanApplication.Api.Controllers
 {
@@ -58,5 +60,7 @@ namespace LoanApplication.Api.Controllers
             await service.WaivePenalty(penaltyId, dto);
             return Ok(new { message = "Penalty waived successfully!" });
         }
+
+        
     }
 }

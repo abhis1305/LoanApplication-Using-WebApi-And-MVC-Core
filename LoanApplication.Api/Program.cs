@@ -28,12 +28,14 @@ builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 
-// Penalty service - your changes
+// Penalty service 
 builder.Services.AddScoped<IPenaltyService, PenaltyService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 // Memory cache and AutoMapper
 builder.Services.AddMemoryCache();
-builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+//builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+builder.Services.AddAutoMapper(cfg => { }, typeof(SupportTicketProfile).Assembly);
 
 // Database connection
 builder.Services.AddDbContext<AppDBContext>(options =>
@@ -67,11 +69,12 @@ builder.Services.AddAuthentication(
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero
         };
+        
     });
 
 // Authorization
 builder.Services.AddAuthorization();
-
+builder.Services.AddScoped<IAuthService, AuthService>();
 var app = builder.Build();
 
 // Serve static files, including google-test.html

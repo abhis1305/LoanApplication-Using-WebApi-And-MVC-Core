@@ -12,5 +12,7 @@ namespace LoanApplication.Application.Interfcae
         Task<List<PenaltyChargeDto>> GetPenaltiesByLoanAccountId(int loanAccountId);
         Task ApplyPenalty(CreatePenaltyChargeDto dto);
         Task WaivePenalty(int penaltyId, WaivePenaltyDto dto);
+
+        Task<List<PenaltyChargeDto>> GetMyPenalties(int userId);
     }
 }

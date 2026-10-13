@@ -129,5 +129,19 @@ namespace LoanApplication.Infrastructure.Repositories
             penalty.WaivedDate = DateTime.UtcNow;
             await db.SaveChangesAsync();
         }
+
+        public async Task<List<PenaltyChargeDto>> GetMyPenalties(int userId)
+        {
+            var user = await db.Users.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId);
+            if(user ==null || user.CustomerId == null)
+            {
+                throw new Exception("User or customer profile not found.");
+            }
+
+            var penalties = await db.PenaltyCharges.AsNoTracking().Where(x => x.LoanAccount.CustomerId == user.CustomerId.Value).ToListAsync();
+
+            var data = mapper.Map<List<PenaltyChargeDto>>(penalties);
+            return data;
+        }
     }
 }
