@@ -1,6 +1,5 @@
 ﻿using LoanApplication.Domain.Entities;
 using LoanApplication.Application.DTO;
-using LoanApplication.Application.Interfcae;
 using LoanApplication.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +11,7 @@ using System.Text;
 using Google.Apis.Auth;
 using Google.Apis.Auth;
 using Microsoft.Extensions.Configuration;
+using LoanApplication.Application.Interface;
 
 namespace LoanApplication.Infrastructure.Repositories
 {

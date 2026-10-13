@@ -94,9 +94,6 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Property<decimal?>("MonthlyInvestment")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("MonthlyInvestement")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Pan")
                         .HasColumnType("nvarchar(max)");
 
@@ -623,6 +620,12 @@ namespace LoanApplication.Infrastructure.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("WaivedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WaiverReason")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PenaltyId");

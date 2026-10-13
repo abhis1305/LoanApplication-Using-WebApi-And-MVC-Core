@@ -49,7 +49,6 @@ namespace LoanApplication.Domain.Entities
 
         public decimal? MonthlyInvestment { get; set; }
 
-        public decimal MonthlyInvestement { get; set; }
 
         public bool IsEmailVerified { get; set; } = false;
         public bool IsTwoFactorEnabled { get; set; } = false;
