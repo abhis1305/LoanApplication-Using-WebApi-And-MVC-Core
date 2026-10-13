@@ -15,7 +15,6 @@ namespace LoanApplication.Infrastructure.Repositories
             this.db = db;
         }
 
-        // Get the latest generated CIBIL score
         public async Task<CibilScoreResponseDto> GetCibilScoreAsync(int customerId)
         {
             var customer = await db.Customers
