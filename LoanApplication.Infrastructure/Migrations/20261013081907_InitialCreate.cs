@@ -19,15 +19,15 @@ namespace LoanApplication.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pan = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AadhaarNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmploymentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MonthlyIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MonthlyInvestment = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MobileNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pan = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AadhaarNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmploymentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MonthlyIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    MonthlyInvestment = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     IsEmailVerified = table.Column<bool>(type: "bit", nullable: false),
                     IsTwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorSecret = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -169,6 +169,8 @@ namespace LoanApplication.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     RiskCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InterestRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TenureInMonths = table.Column<int>(type: "int", nullable: false),
                     EligibleLoanAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -176,6 +178,26 @@ namespace LoanApplication.Infrastructure.Migrations
                     table.PrimaryKey("PK_ScoreCards", x => x.ScoreCardId);
                     table.ForeignKey(
                         name: "FK_ScoreCards_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Wallets",
+                columns: table => new
+                {
+                    WalletId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wallets", x => x.WalletId);
+                    table.ForeignKey(
+                        name: "FK_Wallets_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "CustomerId");
@@ -192,8 +214,8 @@ namespace LoanApplication.Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Mobile = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mobile = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsTwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorSecret = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -289,6 +311,30 @@ namespace LoanApplication.Infrastructure.Migrations
                         column: x => x.DealId,
                         principalTable: "LoanDeals",
                         principalColumn: "DealId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WalletTransactions",
+                columns: table => new
+                {
+                    TransactionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WalletId = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TransactionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReferenceId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WalletTransactions", x => x.TransactionId);
+                    table.ForeignKey(
+                        name: "FK_WalletTransactions_Wallets_WalletId",
+                        column: x => x.WalletId,
+                        principalTable: "Wallets",
+                        principalColumn: "WalletId");
                 });
 
             migrationBuilder.CreateTable(
@@ -492,7 +538,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     PenaltyAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DelayDays = table.Column<int>(type: "int", nullable: false),
                     AppliedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WaiverReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WaivedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -623,6 +671,17 @@ namespace LoanApplication.Infrastructure.Migrations
                 name: "IX_Users_RoleId",
                 table: "Users",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wallets_CustomerId",
+                table: "Wallets",
+                column: "CustomerId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WalletTransactions_WalletId",
+                table: "WalletTransactions",
+                column: "WalletId");
         }
 
         /// <inheritdoc />
@@ -671,10 +730,16 @@ namespace LoanApplication.Infrastructure.Migrations
                 name: "SupportTickets");
 
             migrationBuilder.DropTable(
+                name: "WalletTransactions");
+
+            migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
                 name: "EmiSchedules");
+
+            migrationBuilder.DropTable(
+                name: "Wallets");
 
             migrationBuilder.DropTable(
                 name: "Roles");

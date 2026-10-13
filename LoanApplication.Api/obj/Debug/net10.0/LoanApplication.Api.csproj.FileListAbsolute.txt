@@ -352,3 +352,12 @@ C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\L
 C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.pdb
 C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\LoanApplication.Api.genruntimeconfig.cache
 C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\ref\LoanApplication.Api.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\LoanApplication.Api.staticwebassets.runtime.json
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Google.Apis.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Google.Apis.Auth.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Google.Apis.Core.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\System.Management.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\bin\Debug\net10.0\runtimes\win\lib\net7.0\System.Management.dll
+C:\Users\Admin\Documents\Abhishek1305Masstech\ProjectMVC\LoanApplicationWebApi\LoanAppGrp\LoanAppGrp\LoanApplication.Api\obj\Debug\net10.0\compressed\t3dlu29mbu-{0}-c3q18d5b72-c3q18d5b72.gz
