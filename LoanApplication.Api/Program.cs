@@ -1,6 +1,6 @@
-using LoanApplication.Application.Interfcae;
-using LoanApplication.Application.Mapper;
+
 using LoanApplication.Application.Interface;
+using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
@@ -12,33 +12,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Controllers
+// Add services to the container.
 builder.Services.AddControllers();
-
-// Swagger with JWT Bearer Authentication
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-builder.Services.AddSwaggerGen(options =>
-{
-    options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
-    {
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer",
-        BearerFormat = "JWT",
-        Description = "Enter JWT access token"
-    });
-
-    options.AddSecurityRequirement(document =>
-        new OpenApiSecurityRequirement
-        {
-            [new OpenApiSecuritySchemeReference("bearer", document)] = []
-        });
-});
-
-// Authentication Service
-builder.Services.AddScoped<IAuthService, AuthService>();
-
-// Team Services
+// Application services
 builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
@@ -49,20 +28,21 @@ builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 
-// Memory Cache and AutoMapper
-builder.Services.AddMemoryCache();
-builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+// Penalty service 
+builder.Services.AddScoped<IPenaltyService, PenaltyService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
-// Database Connection
+// Memory cache and AutoMapper
+builder.Services.AddMemoryCache();
+//builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+builder.Services.AddAutoMapper(cfg => { }, typeof(SupportTicketProfile).Assembly);
+
+// Database connection
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("dbconn")
-    ));
+        builder.Configuration.GetConnectionString("dbconn")));
 
-builder.Services.AddMemoryCache();                        // "create the notebook (cache)"
-builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
-//builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(SupportTicketProfile).Assembly));
-// JWT Configuration
+// JWT configuration
 var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException(
         "Jwt:Key is not configured.");
@@ -78,8 +58,7 @@ builder.Services.AddAuthentication(
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtKey)
-            ),
+                Encoding.UTF8.GetBytes(jwtKey)),
 
             ValidateIssuer = true,
             ValidIssuer = jwtIssuer,
@@ -90,17 +69,18 @@ builder.Services.AddAuthentication(
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero
         };
+        
     });
 
 // Authorization
 builder.Services.AddAuthorization();
-
+builder.Services.AddScoped<IAuthService, AuthService>();
 var app = builder.Build();
 
-// Serve google-test.html and other static files
+// Serve static files, including google-test.html
 app.UseStaticFiles();
 
-// Swagger
+// Swagger middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

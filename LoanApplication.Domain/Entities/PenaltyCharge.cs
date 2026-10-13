@@ -27,5 +27,10 @@ namespace LoanApplication.Domain.Entities
         public LoanAccount? LoanAccount { get; set; }
 
         public EmiSchedule? EmiSchedule { get; set; }
+
+        // below these two properties are added by lalu
+        public string? WaiverReason { get; set; }
+
+        public DateTime? WaivedDate { get; set; }
     }
 }
