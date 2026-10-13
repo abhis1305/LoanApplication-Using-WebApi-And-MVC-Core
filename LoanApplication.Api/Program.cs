@@ -46,6 +46,7 @@ builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
+builder.Services.AddScoped<IKycService, KycService>();
 
 // Memory Cache and AutoMapper
 builder.Services.AddMemoryCache();
@@ -88,7 +89,14 @@ builder.Services.AddAuthentication(
     });
 
 // Authorization
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AccessTokenOnly", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("Purpose", "Access");
+    });
+});
 
 var app = builder.Build();
 

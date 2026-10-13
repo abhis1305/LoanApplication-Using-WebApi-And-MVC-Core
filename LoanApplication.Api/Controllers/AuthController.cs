@@ -20,7 +20,8 @@ namespace LoanApplication.Api.Controllers
 
         // REGISTER
 
-        [HttpPost("register")]
+        [HttpPost]
+        [Route("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
             bool result =await service.RegisterUserAsync(dto);
@@ -33,7 +34,8 @@ namespace LoanApplication.Api.Controllers
 
         // LOGIN
 
-        [HttpPost("login")]
+        [HttpPost]
+        [Route("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
             var result =await service.LoginAsync(dto);
@@ -46,7 +48,8 @@ namespace LoanApplication.Api.Controllers
 
         // GOOGLE LOGIN
 
-        [HttpPost("google")]
+        [HttpPost]
+        [Route("google")]
         public async Task<IActionResult> GoogleLogin(GoogleAuthDto dto)
         {
             var result =await service.GoogleLoginAsync(dto);
@@ -58,8 +61,9 @@ namespace LoanApplication.Api.Controllers
         }
 
         // COMPLETE PROFILE
-        [Authorize]
-        [HttpPut("complete-profile")]
+        [Authorize(Policy = "AccessTokenOnly")]
+        [HttpPut]
+        [Route("complete-profile")]
         public async Task<IActionResult> CompleteProfile(
             [FromBody] CompleteProfileDto dto)
         {
@@ -104,7 +108,8 @@ namespace LoanApplication.Api.Controllers
 
         // VERIFY 2FA
 
-        [HttpPost("verify-2fa")]
+        [HttpPost]
+        [Route("verify-2fa")]
         public async Task<IActionResult> VerifyTwoFactor(Verify2FaDto dto)
         {
             var result =await service.VerifyTwoFactorAsync(dto);
@@ -117,8 +122,9 @@ namespace LoanApplication.Api.Controllers
 
         // ENABLE 2FA
 
-        [Authorize]
-        [HttpPost("enable-2fa")]
+        [Authorize(Policy = "AccessTokenOnly")]
+        [HttpPost]
+        [Route("enable-2fa")]
         public async Task<IActionResult> EnableTwoFactor()
         {
             var userIdClaim =User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
