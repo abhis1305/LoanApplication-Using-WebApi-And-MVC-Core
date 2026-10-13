@@ -11,8 +11,6 @@ namespace LoanApplication.Infrastructure.Repositories
     public class ReportService : IReportService
     {
         AppDBContext db;
-
-        // Status words used in the tables. If your team uses other words, change them HERE only.
         const string StatusApproved = "Approved";
         const string StatusRejected = "Rejected";
         const string StatusPending = "Pending";
@@ -26,7 +24,6 @@ namespace LoanApplication.Infrastructure.Repositories
             this.db = db;
         }
 
-        // from/to are optional: default = 1 Jan of this year to today (whole last day included)
         private static (DateTime from, DateTime to) Range(DateTime? from, DateTime? to)
         {
             var f = (from ?? new DateTime(DateTime.Today.Year, 1, 1)).Date;
