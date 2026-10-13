@@ -21,9 +21,11 @@ namespace LoanApplication.Domain.Entities
 
         public string Email { get; set; }
 
-        public string Mobile { get; set; }
+        public string? Mobile { get; set; }
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
+        public bool IsTwoFactorEnabled { get; set; } = false;
+        public string? TwoFactorSecret { get; set; }
 
         public Role? Role { get; set; }
 

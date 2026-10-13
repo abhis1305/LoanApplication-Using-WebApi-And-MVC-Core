@@ -1,8 +1,10 @@
+
 using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Domain.Entities;
 using LoanApplication.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using LoanApplication.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

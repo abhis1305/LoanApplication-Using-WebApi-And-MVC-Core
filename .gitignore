@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
+# Visual Studio
+.vs/
+**/.vs/
+
+# Build output
+bin/
+obj/
+**/bin/
+**/obj/
+
+# User-specific files
+*.user
+*.suo
+
+# IDE files
+<<<<<<< HEAD
+.vscode/
+=======
+.vscode/
+>>>>>>> origin/main

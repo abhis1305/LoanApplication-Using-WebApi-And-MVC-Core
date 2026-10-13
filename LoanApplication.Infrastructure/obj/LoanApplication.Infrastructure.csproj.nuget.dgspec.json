@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+    "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Application\\LoanApplication.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Application\\LoanApplication.Application.csproj",
         "projectName": "LoanApplication.Application",
-        "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj",
-        "packagesPath": "C:\\Users\\Rohit saw\\.nuget\\packages\\",
-        "outputPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Application\\LoanApplication.Application.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rohit saw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -34,8 +34,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
-                "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
+              "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
               }
             }
           }
@@ -59,7 +59,23 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[14.0.0, )"
+              "version": "[16.2.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.77.0, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -76,6 +92,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.12, )"
+            },
+            "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",
@@ -376,20 +396,20 @@
         }
       }
     },
-    "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+    "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
         "projectName": "LoanApplication.Domain",
-        "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
-        "packagesPath": "C:\\Users\\Rohit saw\\.nuget\\packages\\",
-        "outputPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rohit saw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -425,9 +445,17 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
-            "AutoMapper": {
+            "Hangfire.AspNetCore": {
               "target": "Package",
-              "version": "[14.0.0, )"
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -744,20 +772,20 @@
         }
       }
     },
-    "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
+    "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
         "projectName": "LoanApplication.Infrastructure",
-        "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Rohit saw\\.nuget\\packages\\",
-        "outputPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rohit saw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -774,11 +802,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj": {
-                "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj"
+              "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Application\\LoanApplication.Application.csproj"
               },
-              "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
-                "projectPath": "D:\\Abhishek\\LoanApplicationWebApi\\LoanAppGrp\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
+              "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\ConflitSolve\\SampadaPR-Fix\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
               }
             }
           }
@@ -802,7 +830,23 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[14.0.0, )"
+              "version": "[16.2.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.77.0, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.25, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.25, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -819,6 +863,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.12, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[10.0.12, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2026.9.1, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",

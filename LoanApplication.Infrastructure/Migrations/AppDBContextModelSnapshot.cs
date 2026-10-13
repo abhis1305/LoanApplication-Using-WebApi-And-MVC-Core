@@ -59,10 +59,9 @@ namespace LoanApplication.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
                     b.Property<string>("AadhaarNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Age")
+                    b.Property<int?>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -70,7 +69,6 @@ namespace LoanApplication.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmploymentType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -80,26 +78,29 @@ namespace LoanApplication.Infrastructure.Migrations
                     b.Property<bool>("IsEmailVerified")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsTwoFactorEnabled")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("MonthlyIncome")
+                    b.Property<decimal?>("MonthlyIncome")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("MonthlyInvestement")
+                    b.Property<decimal?>("MonthlyInvestment")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Pan")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwoFactorSecret")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
@@ -621,6 +622,12 @@ namespace LoanApplication.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("WaivedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WaiverReason")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PenaltyId");
 
                     b.HasIndex("EmiScheduleId");
@@ -774,20 +781,24 @@ namespace LoanApplication.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsTwoFactorEnabled")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mobile")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("TwoFactorSecret")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
