@@ -8,7 +8,7 @@ namespace LoanApplication.Infrastructure.Repositories
 {
     public class ScoreCardService : IScoreCardService
     {
-        AppDBContext db;
+        private readonly AppDBContext db;
 
         public ScoreCardService(AppDBContext db)
         {
@@ -17,12 +17,24 @@ namespace LoanApplication.Infrastructure.Repositories
 
         public async Task<ScoreCardResponseDto> GenerateScoreCardAsync(int customerId)
         {
+            // Fetch customer
             var customer = await db.Customers
                 .FirstOrDefaultAsync(c => c.CustomerId == customerId);
 
             if (customer == null)
+            {
                 throw new KeyNotFoundException("Customer not found.");
+            }
 
+            // Validate monthly income
+            if (!customer.MonthlyIncome.HasValue ||
+                customer.MonthlyIncome.Value <= 0)
+            {
+                throw new InvalidOperationException(
+                    "Please enter a valid monthly income before generating the scorecard.");
+            }
+
+            // Fetch latest CIBIL report
             var cibil = await db.CibilReports
                 .Where(c => c.CustomerId == customerId)
                 .OrderByDescending(c => c.CheckDate)
@@ -30,22 +42,31 @@ namespace LoanApplication.Infrastructure.Repositories
                 .FirstOrDefaultAsync();
 
             if (cibil == null)
+            {
                 throw new InvalidOperationException(
                     "Generate the CIBIL score before generating the scorecard.");
+            }
 
+            // Convert nullable values safely
+            decimal monthlyIncome = customer.MonthlyIncome.Value;
+            decimal monthlyInvestment = customer.MonthlyInvestment ?? 0m;
+
+            // Determine risk category
             string riskCategory = GetRiskCategory(cibil.CibilScore);
 
-            decimal maximumEmi = customer.MonthlyIncome * 0.40m;
+            // Calculate allowable EMI
+            decimal maximumEmi = monthlyIncome * 0.40m;
 
             decimal availableEmi = Math.Max(
                 0m,
-                maximumEmi - customer.MonthlyInvestement);
+                maximumEmi - monthlyInvestment);
 
+            // Loan options
             var options = new[]
             {
                 (Rate: 11.3m, Tenure: 36),
-                (Rate: 11m, Tenure: 60),
-                (Rate: 11m, Tenure: 72)
+                (Rate: 11.0m, Tenure: 60),
+                (Rate: 11.0m, Tenure: 72)
             };
 
             var savedOptions = new List<LoanOptionDto>();
@@ -78,6 +99,7 @@ namespace LoanApplication.Infrastructure.Repositories
                 });
             }
 
+            // Return scorecard response
             return new ScoreCardResponseDto
             {
                 CustomerId = customer.CustomerId,
@@ -89,24 +111,28 @@ namespace LoanApplication.Infrastructure.Repositories
             };
         }
 
-        private static decimal CalculateLoanAmount(decimal emi,decimal annualRate,int tenure)
+        private static decimal CalculateLoanAmount(
+            decimal emi,
+            decimal annualRate,
+            int tenure)
         {
-            double r = (double)annualRate / 1200.0;
-            double n = tenure;
+            double monthlyRate = (double)annualRate / 1200.0;
+            double months = tenure;
             double monthlyEmi = (double)emi;
 
             double amount;
 
-            if (r == 0)
+            if (monthlyRate == 0)
             {
-                amount = monthlyEmi * n;
+                amount = monthlyEmi * months;
             }
             else
             {
-                double factor = Math.Pow(1 + r, n);
+                double factor = Math.Pow(1 + monthlyRate, months);
 
                 amount = monthlyEmi *
-                    (factor - 1) / (r * factor);
+                    (factor - 1) /
+                    (monthlyRate * factor);
             }
 
             return Math.Round((decimal)amount, 2);
@@ -114,8 +140,15 @@ namespace LoanApplication.Infrastructure.Repositories
 
         private static string GetRiskCategory(int score)
         {
-            if (score >= 800) return "Low";
-            if (score >= 650) return "Medium";
+            if (score >= 800)
+            {
+                return "Low";
+            }
+
+            if (score >= 650)
+            {
+                return "Medium";
+            }
 
             return "High";
         }
