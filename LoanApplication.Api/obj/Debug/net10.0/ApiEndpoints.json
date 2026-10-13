@@ -144,6 +144,16 @@
   },
   {
     "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
+    "Method": "CheckUpcomingEmis",
+    "RelativePath": "api/EmiSchedule/UpcomingEmis",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LoanApplication.Api.Controllers.EmiScheduleController",
     "Method": "UpdateEmiSchedule",
     "RelativePath": "api/EmiSchedule/UpdateEMI",
     "HttpMethod": "PUT",

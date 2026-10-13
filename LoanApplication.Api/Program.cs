@@ -22,6 +22,7 @@ builder.Services.AddScoped<IEligibilityService, EligibilityService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
+builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
 
 // Database Connection
 builder.Services.AddDbContext<AppDBContext>(options =>
@@ -37,6 +38,13 @@ builder.Services.AddHangfire(config =>
 builder.Services.AddHangfireServer();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
+        "emi-reminder-check", service => service.CheckUpcomingEmis(), Cron.Daily);
+}
 
 app.UseHangfireDashboard();
 

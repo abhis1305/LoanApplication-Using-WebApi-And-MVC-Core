@@ -275,6 +275,18 @@
         }
       }
     },
+    "/api/EmiSchedule/UpcomingEmis": {
+      "post": {
+        "tags": [
+          "EmiSchedule"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/LoanAccount/CreateLA/{dealId}": {
       "post": {
         "tags": [
