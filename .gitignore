@@ -22,3 +22,8 @@ obj/
 =======
 .vscode/
 >>>>>>> origin/main
+
+# .NET generated build files
+**/bin/
+**/obj/
+
