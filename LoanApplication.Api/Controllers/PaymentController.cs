@@ -46,5 +46,70 @@ namespace LoanApplication.Api.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+
+        [Authorize]
+        [HttpPost("PayPenalty/{penaltyId:int}")]
+        public async Task<IActionResult> PayPenalty(int penaltyId)
+        {
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!int.TryParse(userIdValue, out int userId))
+            {
+                return Unauthorized(new
+                {
+                    message = "Valid user authentication is required."
+                });
+            }
+
+            try
+            {
+                var payment = await service.PayPenalty(penaltyId, userId);
+                return Ok(payment);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized(new
+                {
+                    message = "Customer profile not found."
+                });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [Authorize]
+        [HttpGet("MyPayments")]
+        public async Task<IActionResult> GetMyPayments()
+        {
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!int.TryParse(userIdValue, out int userId))
+            {
+                return Unauthorized(new
+                {
+                    message = "Valid user authentication is required."
+                });
+            }
+
+            try
+            {
+                var payments = await service.GetMyPayments(userId);
+                return Ok(payments);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized(new
+                {
+                    message = "Customer profile not found."
+                });
+            }
+        }
     }
 }

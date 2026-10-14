@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
 # Visual Studio
 .vs/
 **/.vs/
@@ -14,4 +17,13 @@ obj/
 *.suo
 
 # IDE files
+<<<<<<< HEAD
 .vscode/
+=======
+.vscode/
+>>>>>>> origin/main
+
+# .NET generated build files
+**/bin/
+**/obj/
+
