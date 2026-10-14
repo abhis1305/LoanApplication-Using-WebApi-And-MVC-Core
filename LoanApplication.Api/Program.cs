@@ -31,6 +31,7 @@ builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 // Penalty service 
 builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IForeClosureService, ForeClosureService>();
 
 // Memory cache and AutoMapper
 builder.Services.AddMemoryCache();
@@ -54,7 +55,7 @@ builder.Services.AddAuthentication(
     JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.TokenValidationParameters = new TokenValidationParameters
+            options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(
