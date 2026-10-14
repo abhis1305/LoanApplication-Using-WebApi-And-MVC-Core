@@ -35,6 +35,8 @@ namespace LoanApplication.Application.DTO
         public string? Token { get; set; }
         public string? Role { get; set; }
         public string Message { get; set; }
+        public bool RequiresTwoFactorSetup { get; set; } = false;
+        public string? SetupToken { get; set; }
     }
 
     public class Verify2FaDto
