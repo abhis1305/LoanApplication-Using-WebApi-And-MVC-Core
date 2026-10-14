@@ -120,6 +120,17 @@ builder.Services.AddAuthorization(options =>
 // 8. Configure authorization
 builder.Services.AddAuthorization();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("App", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -134,6 +145,7 @@ using (var scope = app.Services.CreateScope())
     );
 }
 
+
 app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
@@ -143,12 +155,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("App");
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseHangfireDashboard();
 
 app.MapControllers();
-
 app.Run();
