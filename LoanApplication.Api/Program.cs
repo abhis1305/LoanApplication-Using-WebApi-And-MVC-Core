@@ -1,3 +1,4 @@
+
 using LoanApplication.Application.Interface;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
@@ -7,18 +8,53 @@ using LoanApplication.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 
 using Hangfire;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Add controllers and Swagger
+// 1. Add Controllers and Swagger
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-// 2. Register application services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularFrontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
+
+builder.Services.AddEndpointsApiExplorer();
+
+// 2. Configure Swagger JWT Bearer Authentication
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter your JWT access token."
+    });
+
+    options.AddSecurityRequirement(document =>
+        new OpenApiSecurityRequirement
+        {
+            [new OpenApiSecuritySchemeReference("Bearer", document)]
+                = new List<string>()
+        });
+});
+
+// 3. Register Application Services
 builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
@@ -32,16 +68,13 @@ builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 
-// 3. Register penalty, payment and authentication services
-builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
-builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
-  
-// Penalty service 
+// 4. Register KYC, Penalty, Payment and Authentication Services
+builder.Services.AddScoped<IKycService, KycService>();
 builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-// 4. Memory cache and AutoMapper
+// 5. Configure Memory Cache and AutoMapper
 builder.Services.AddMemoryCache();
 
 builder.Services.AddAutoMapper(
@@ -49,7 +82,7 @@ builder.Services.AddAutoMapper(
     typeof(SupportTicketProfile).Assembly
 );
 
-// 5. Configure SQL Server database
+// 6. Configure SQL Server Database
 var connectionString =
     builder.Configuration.GetConnectionString("dbconn")
     ?? throw new InvalidOperationException(
@@ -60,14 +93,14 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(connectionString)
 );
 
-// 6. Configure Hangfire
+// 7. Configure Hangfire
 builder.Services.AddHangfire(config =>
     config.UseSqlServerStorage(connectionString)
 );
 
 builder.Services.AddHangfireServer();
 
-// 7. Configure JWT authentication
+// 8. Configure JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException(
         "Jwt:Key is not configured."
@@ -103,30 +136,20 @@ builder.Services
             };
     });
 
-// 8. Configure authorization
-builder.Services.AddAuthorization();
-
-builder.Services.AddCors(options =>
+// 9. Configure Authorization
+builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AngularPolicy", policy =>
+    options.AddPolicy("AccessTokenOnly", policy =>
     {
-        policy
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("Purpose", "Access");
     });
 });
 
-
-
-
-
-// 9. Build the application
+// 10. Build Application
 var app = builder.Build();
 
-app.UseCors("AngularPolicy");
-
-// 10. Register the daily EMI reminder job
+// 11. Register Daily EMI Reminder Job
 using (var scope = app.Services.CreateScope())
 {
     var recurringJobManager =
@@ -139,25 +162,27 @@ using (var scope = app.Services.CreateScope())
     );
 }
 
-// 11. Serve static files
+// 12. Serve Static Files
 app.UseStaticFiles();
 
-// 12. Enable Swagger in development
+// 13. Enable Swagger in Development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// 13. Configure middleware
+// 14. Configure Middleware
 app.UseHttpsRedirection();
-
-app.UseCors("AngularPolicy");
-
-app.UseAuthentication(); // If used in your project
+app.UseCors("AngularFrontend");
+app.UseAuthentication();
 app.UseAuthorization();
 
+// 15. Enable Hangfire Dashboard
+app.UseHangfireDashboard();
+
+// 16. Map API Controllers
 app.MapControllers();
 
-// 16. Start the application
+// 17. Start Application
 app.Run();

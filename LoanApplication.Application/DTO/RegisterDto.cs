@@ -17,7 +17,7 @@ namespace LoanApplication.Application.DTO
         public string EmploymentType { get; set; }
         public decimal MonthlyIncome { get; set; }
         public decimal MonthlyInvestment { get; set; }
-        public int RoleId { get; set; } = 2; // Default Customer Role
+        //public int RoleId { get; set; } = 2; // Default Customer Role
     }
 
 
@@ -27,12 +27,16 @@ namespace LoanApplication.Application.DTO
         public string Password { get; set; }
     }
 
+
     public class AuthResponseDto
     {
         public bool RequiresTwoFactor { get; set; }
-        public string? PreAuthToken { get; set; } // Temporary 2FA token
-        public string? Token { get; set; }        // Main Access Token
+        public string? PreAuthToken { get; set; }
+        public string? Token { get; set; }
+        public string? Role { get; set; }
         public string Message { get; set; }
+        public bool RequiresTwoFactorSetup { get; set; } = false;
+        public string? SetupToken { get; set; }
     }
 
     public class Verify2FaDto
