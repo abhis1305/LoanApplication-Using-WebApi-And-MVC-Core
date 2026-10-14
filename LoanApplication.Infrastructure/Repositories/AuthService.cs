@@ -248,7 +248,9 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
         // COMPLETE PROFILE
-        public async Task<bool> CompleteProfileAsync(int userId,CompleteProfileDto dto)
+        public async Task<bool> CompleteProfileAsync(
+            int userId,
+            CompleteProfileDto dto)
         {
             // 1. Find the logged-in user
             var user = await db.Users.FirstOrDefaultAsync(u => u.UserId == userId);
@@ -276,7 +278,7 @@ namespace LoanApplication.Infrastructure.Repositories
             {
                 user.Mobile = dto.MobileNo;
             }
-           
+
             await db.SaveChangesAsync();
             return true;
         }
@@ -292,17 +294,54 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "Invalid or expired 2FA session."
                 };
             }
+
+            string purpose;
+            try
+            {
+                var jwt = new JwtSecurityTokenHandler().ReadJwtToken(dto.PreAuthToken);
+                purpose = jwt.Claims.FirstOrDefault(c => c.Type == "Purpose")?.Value ?? "";
+            }
+            catch
+            {
+                return new AuthResponseDto
+                {
+                    Message = "Invalid 2FA session."
+                };
+            }
+            if (purpose != "2FA_Setup" &&
+                purpose != "2FA_Verification")
+            {
+                return new AuthResponseDto
+                {
+                    Message = "Invalid 2FA session purpose."
+                };
+            }
             var user = await db.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null ||
-                string.IsNullOrEmpty(user.TwoFactorSecret))
+                string.IsNullOrWhiteSpace(user.TwoFactorSecret))
             {
                 return new AuthResponseDto
                 {
                     Message = "2FA setup not found."
                 };
             }
-
-            bool validCode = ValidateTotpCode(user.TwoFactorSecret,dto.Code);
+            // Setup token is valid only before 2FA has been enabled
+            if (purpose == "2FA_Setup" && user.IsTwoFactorEnabled)
+            {
+                return new AuthResponseDto
+                {
+                    Message = "2FA is already enabled. Please log in again."
+                };
+            }
+            // Verification token is valid only for an enabled account
+            if (purpose == "2FA_Verification" && !user.IsTwoFactorEnabled)
+            {
+                return new AuthResponseDto
+                {
+                    Message = "2FA setup is not complete."
+                };
+            }
+            bool validCode = ValidateTotpCode(user.TwoFactorSecret, dto.Code);
             if (!validCode)
             {
                 return new AuthResponseDto
@@ -310,49 +349,11 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "Invalid 2FA code."
                 };
             }
-            string token = GenerateJwtToken(user,false);
-
-            return new AuthResponseDto
+            // Enable 2FA only after first-time setup OTP succeeds
+            if (purpose == "2FA_Setup")
             {
-                RequiresTwoFactor = false,
-                Token = token,
-                Role = user.Role?.RoleName,
-                Message = "2FA verification successful."
-            };
-        }
-
-        // ENABLE 2FA
-        public async Task<Setup2FaDto> EnableTwoFactorAsync(int userId)
-        {
-            var user = await db.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
-            if (user == null)
-                return null;
-            string secret = GenerateBase32Secret();
-            user.TwoFactorSecret = secret;
-            user.IsTwoFactorEnabled = true;
-            await db.SaveChangesAsync();
-
-            return new Setup2FaDto
-            {
-                ManualEntryKey = secret,
-                QrCodeUri =$"otpauth://totp/LoanApp:{user.Email}" +$"?secret={secret}&issuer=LoanApp"
-            };
-        }
-
-
-        private AuthResponseDto ProcessUserLoginFlow(User user)
-        {
-            if (user.IsTwoFactorEnabled)
-            {
-                string preAuthToken = GenerateJwtToken(user, true);
-
-                return new AuthResponseDto
-                {
-                    RequiresTwoFactor = true,
-                    PreAuthToken = preAuthToken,
-                    Message = "2FA required. Verify code to continue."
-                };
+                user.IsTwoFactorEnabled = true;
+                await db.SaveChangesAsync();
             }
 
             string token = GenerateJwtToken(user, false);
@@ -360,27 +361,94 @@ namespace LoanApplication.Infrastructure.Repositories
             return new AuthResponseDto
             {
                 RequiresTwoFactor = false,
+                RequiresTwoFactorSetup = false,
+                SetupToken = null,
+                PreAuthToken = null,
                 Token = token,
                 Role = user.Role?.RoleName,
-                Message = "Login successful."
+                Message = purpose == "2FA_Setup"
+                    ? "2FA setup and verification successful."
+                    : "2FA verification successful."
             };
         }
 
-        // JWT TOKEN
-        private string GenerateJwtToken(User user,bool isPreAuth)
+        // ENABLE 2FA
+        public async Task<Setup2FaDto> EnableTwoFactorAsync(int userId)
         {
-            string keyValue = config["Jwt:Key"]?? throw new InvalidOperationException("Jwt:Key is not configured.");
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue));
-
-            var credentials =new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
-            var claims = new List<Claim>
+            var user = await db.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            if (user == null)
             {
-                new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
-                new Claim(ClaimTypes.Email,user.Email),
-                new Claim("Purpose",isPreAuth? "2FA_Verification": "Access")
+                return null!;
+            }
+            // Do not regenerate the secret for an enabled account
+            if (user.IsTwoFactorEnabled)
+            {
+                throw new InvalidOperationException(
+                    "Two-factor authentication is already enabled.");
+            }
+            // Reuse the pending secret if setup was already started
+            if (string.IsNullOrWhiteSpace(user.TwoFactorSecret))
+            {
+                user.TwoFactorSecret = GenerateBase32Secret();
+                await db.SaveChangesAsync();
+            }
+            // Do not enable 2FA until the OTP is verified
+            return new Setup2FaDto
+            {
+                ManualEntryKey = user.TwoFactorSecret,
+                QrCodeUri =
+                    $"otpauth://totp/LoanApp:{user.Email}" +
+                    $"?secret={user.TwoFactorSecret}&issuer=LoanApp"
             };
+        }
 
-            if (!isPreAuth)
+
+        private AuthResponseDto ProcessUserLoginFlow(User user)
+        {
+            // 2FA already enabled: ask for OTP
+            if (user.IsTwoFactorEnabled)
+            {
+                string preAuthToken = GenerateJwtToken(user, "2FA_Verification");
+                return new AuthResponseDto
+                {
+                    RequiresTwoFactor = true,
+                    PreAuthToken = preAuthToken,
+                    RequiresTwoFactorSetup = false,
+                    SetupToken = null,
+                    Message = "2FA required. Verify code to continue."
+                };
+            }
+            // First-time setup: require QR setup before granting access
+            string setupToken = GenerateJwtToken(user, "2FA_Setup");
+            return new AuthResponseDto
+            {
+                RequiresTwoFactor = false,
+                RequiresTwoFactorSetup = true,
+                SetupToken = setupToken,
+                PreAuthToken = null,
+                Token = null,
+                Role = null,
+                Message = "First-time 2FA setup required."
+            };
+        }
+        // JWT TOKEN
+        private string GenerateJwtToken(User user, bool isPreAuth)
+        {
+            string purpose = isPreAuth ? "2FA_Verification" : "Access";
+            return GenerateJwtToken(user, purpose);
+        }
+        private string GenerateJwtToken(User user, string purpose)
+        {
+            string keyValue = config["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key is not configured.");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyValue));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var claims = new List<Claim>    {
+        new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
+        new Claim(ClaimTypes.Email,user.Email),
+        new Claim("Purpose", purpose)
+    };
+            // Only final access tokens receive a role claim
+            if (purpose == "Access")
             {
                 string? roleName = user.Role?.RoleName;
                 if (string.IsNullOrWhiteSpace(roleName))
@@ -390,50 +458,87 @@ namespace LoanApplication.Infrastructure.Repositories
                 claims.Add(new Claim(ClaimTypes.Role, roleName));
             }
 
-            DateTime expiry = isPreAuth? DateTime.UtcNow.AddMinutes(5): DateTime.UtcNow.AddHours(2);
-            var token = new JwtSecurityToken(issuer: config["Jwt:Issuer"] ?? "LoanAppAPI",
+            DateTime expiry = purpose == "Access" ? DateTime.UtcNow.AddHours(2) : DateTime.UtcNow.AddMinutes(5);
+
+            var token = new JwtSecurityToken(
+                issuer: config["Jwt:Issuer"] ?? "LoanAppAPI",
                 audience: config["Jwt:Audience"] ?? "LoanAppClients",
                 claims: claims,
                 expires: expiry,
                 signingCredentials: credentials
             );
+
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         // GET USER FROM PRE-AUTH TOKEN
-        private int? GetUserIdFromPreAuthToken(
-            string token)
+
+        private int? GetUserIdFromPreAuthToken(string token)
         {
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                return null;
+            }
+
             try
             {
                 var handler = new JwtSecurityTokenHandler();
-                string keyValue = config["Jwt:Key"]?? throw new InvalidOperationException("Jwt:Key is not configured.");
+
+                string keyValue = config["Jwt:Key"]
+                    ?? throw new InvalidOperationException(
+                        "Jwt:Key is not configured.");
+
                 var key = Encoding.UTF8.GetBytes(keyValue);
-                var parameters =new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey =new SymmetricSecurityKey(key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ValidateLifetime = true,
-                        ClockSkew = TimeSpan.Zero
-                    };
 
-                var principal =handler.ValidateToken(token,parameters,out _);
+                var validationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
 
-                if (principal.FindFirst("Purpose")?.Value!= "2FA_Verification")
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+
+                    ValidateIssuer = true,
+
+                    ValidIssuer = config["Jwt:Issuer"] ?? "LoanAppAPI",
+
+                    ValidateAudience = true,
+
+                    ValidAudience = config["Jwt:Audience"] ?? "LoanAppClients",
+
+                    ValidateLifetime = true,
+
+                    ClockSkew = TimeSpan.Zero
+                };
+
+                // Validate JWT signature, issuer, audience and expiry
+                var principal = handler.ValidateToken(
+                    token,
+                    validationParameters,
+                    out _
+                );
+
+                // Accept both first-time setup and normal 2FA tokens
+                var purpose = principal.FindFirst("Purpose")?.Value;
+
+                if (purpose != "2FA_Setup" &&
+                    purpose != "2FA_Verification")
                 {
                     return null;
                 }
 
-                string id =principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                // Get the user ID from the validated token
+                var userIdValue = principal
+                    .FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-                if (int.TryParse(id, out int userId))
+                if (int.TryParse(userIdValue, out int userId))
+                {
                     return userId;
+                }
+
                 return null;
             }
             catch
             {
+                // Invalid, expired or incorrectly signed token
                 return null;
             }
         }
@@ -443,12 +548,12 @@ namespace LoanApplication.Infrastructure.Repositories
         {
             try
             {
-                string clientId =config["Google:ClientId"];
-                var settings =new GoogleJsonWebSignature.ValidationSettings
-                    {
-                        Audience = new[] { clientId }
-                    };
-                var payload =await GoogleJsonWebSignature.ValidateAsync(idToken,settings);
+                string clientId = config["Google:ClientId"];
+                var settings = new GoogleJsonWebSignature.ValidationSettings
+                {
+                    Audience = new[] { clientId }
+                };
+                var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, settings);
                 return payload.Email ?? "";
             }
             catch
@@ -461,22 +566,22 @@ namespace LoanApplication.Infrastructure.Repositories
         private string HashPassword(string password)
         {
             using var sha = SHA256.Create();
-            byte[] bytes =sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+            byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
             return Convert.ToBase64String(bytes);
         }
 
-        private bool VerifyPassword(string inputPassword,string storedHash)
+        private bool VerifyPassword(string inputPassword, string storedHash)
         {
-            return HashPassword(inputPassword)== storedHash;
+            return HashPassword(inputPassword) == storedHash;
         }
 
         // BASE32 SECRET
         private string GenerateBase32Secret()
         {
-            const string chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
             byte[] buffer = new byte[20];
             RandomNumberGenerator.Fill(buffer);
-            StringBuilder result =new StringBuilder();
+            StringBuilder result = new StringBuilder();
             foreach (byte b in buffer)
             {
                 result.Append(
@@ -487,13 +592,13 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
         // TOTP
-        private bool ValidateTotpCode(string secret,string code)
+        private bool ValidateTotpCode(string secret, string code)
         {
-            long timeStep =DateTimeOffset.UtcNow.ToUnixTimeSeconds()/ 30;
+            long timeStep = DateTimeOffset.UtcNow.ToUnixTimeSeconds() / 30;
 
             for (int i = -1; i <= 1; i++)
             {
-                if (GenerateCodeForTimeStep(secret,timeStep + i)== code.Trim())
+                if (GenerateCodeForTimeStep(secret, timeStep + i) == code.Trim())
                 {
                     return true;
                 }
@@ -501,23 +606,23 @@ namespace LoanApplication.Infrastructure.Repositories
             return false;
         }
 
-        private string GenerateCodeForTimeStep(string secret,long timeStep)
+        private string GenerateCodeForTimeStep(string secret, long timeStep)
         {
             byte[] key = Base32Decode(secret);
-            byte[] timeBytes =BitConverter.GetBytes(timeStep);
+            byte[] timeBytes = BitConverter.GetBytes(timeStep);
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(timeBytes);
-            using var hmac =new HMACSHA1(key);
-            byte[] hash =hmac.ComputeHash(timeBytes);
-            int offset =hash[hash.Length - 1] & 0x0F;
-            int binaryCode =((hash[offset] & 0x7F) << 24)|((hash[offset + 1] & 0xFF) << 16)|((hash[offset + 2] & 0xFF) << 8)|(hash[offset + 3] & 0xFF);
+            using var hmac = new HMACSHA1(key);
+            byte[] hash = hmac.ComputeHash(timeBytes);
+            int offset = hash[hash.Length - 1] & 0x0F;
+            int binaryCode = ((hash[offset] & 0x7F) << 24) | ((hash[offset + 1] & 0xFF) << 16) | ((hash[offset + 2] & 0xFF) << 8) | (hash[offset + 3] & 0xFF);
 
             return (binaryCode % 1000000).ToString("D6");
         }
 
         private byte[] Base32Decode(string input)
         {
-            const string chars ="ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
             input = input.Trim().Replace(" ", "").ToUpper();
             List<byte> bytes = new List<byte>();
             int buffer = 0;
@@ -528,13 +633,13 @@ namespace LoanApplication.Infrastructure.Repositories
                 int value = chars.IndexOf(c);
                 if (value < 0)
                     continue;
-                buffer =(buffer << 5) | value;
+                buffer = (buffer << 5) | value;
                 bitsLeft += 5;
                 if (bitsLeft >= 8)
                 {
                     bitsLeft -= 8;
                     bytes.Add((byte)(buffer >> bitsLeft));
-                    buffer &=(1 << bitsLeft) - 1;
+                    buffer &= (1 << bitsLeft) - 1;
                 }
             }
             return bytes.ToArray();
