@@ -106,8 +106,25 @@ builder.Services
 // 8. Configure authorization
 builder.Services.AddAuthorization();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularPolicy", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
+
+
+
 // 9. Build the application
 var app = builder.Build();
+
+app.UseCors("AngularPolicy");
 
 // 10. Register the daily EMI reminder job
 using (var scope = app.Services.CreateScope())
@@ -135,13 +152,11 @@ if (app.Environment.IsDevelopment())
 // 13. Configure middleware
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+app.UseCors("AngularPolicy");
+
+app.UseAuthentication(); // If used in your project
 app.UseAuthorization();
 
-// 14. Enable Hangfire Dashboard
-app.UseHangfireDashboard();
-
-// 15. Map API controllers
 app.MapControllers();
 
 // 16. Start the application

@@ -4311,23 +4311,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\parth\\.nuget\\packages\\": {},
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\LoanApplication.Api.csproj",
       "projectName": "LoanApplication.Api",
-      "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj",
-      "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\LoanApplication.Api.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4344,11 +4344,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj": {
-              "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj"
+            "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Application\\LoanApplication.Application.csproj"
             },
-            "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj"
+            "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Abhishek1305Masstech\\ProjectMVC\\LoanApplicationWebApi\\LoanAppGrp\\LoanAppGrp\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj"
             }
           }
         }
@@ -4855,5 +4855,27 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.11 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2fmv-rv2c-59x7",
+      "libraryId": "System.Security.Cryptography.Pkcs",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.11 has a known high severity vulnerability, https://github.com/advisories/GHSA-846f-f764-76mx",
+      "libraryId": "System.Security.Cryptography.Pkcs",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
