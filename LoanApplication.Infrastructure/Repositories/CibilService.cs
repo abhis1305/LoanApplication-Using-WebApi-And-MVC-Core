@@ -1,4 +1,4 @@
-﻿using LoanApplication.Application.DTO;
+using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
 using LoanApplication.Domain.Entities;
 using LoanApplication.Infrastructure.Data;
@@ -15,7 +15,6 @@ namespace LoanApplication.Infrastructure.Repositories
             this.db = db;
         }
 
-        // Get the latest generated CIBIL score
         public async Task<CibilScoreResponseDto> GetCibilScoreAsync(int customerId)
         {
             var customer = await db.Customers

@@ -319,6 +319,7 @@ namespace LoanApplication.Infrastructure.Repositories
             {
                 RequiresTwoFactor = false,
                 Token = token,
+                Role = user.Role?.RoleName,
                 Message = "2FA verification successful."
             };
         }
@@ -342,12 +343,13 @@ namespace LoanApplication.Infrastructure.Repositories
             };
         }
 
-        // LOGIN FLOW
+
         private AuthResponseDto ProcessUserLoginFlow(User user)
         {
             if (user.IsTwoFactorEnabled)
             {
-                string preAuthToken =GenerateJwtToken(user, true);
+                string preAuthToken = GenerateJwtToken(user, true);
+
                 return new AuthResponseDto
                 {
                     RequiresTwoFactor = true,
@@ -355,11 +357,14 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "2FA required. Verify code to continue."
                 };
             }
-            string token =GenerateJwtToken(user, false);
+
+            string token = GenerateJwtToken(user, false);
+
             return new AuthResponseDto
             {
                 RequiresTwoFactor = false,
                 Token = token,
+                Role = user.Role?.RoleName,
                 Message = "Login successful."
             };
         }
@@ -378,9 +383,14 @@ namespace LoanApplication.Infrastructure.Repositories
                 new Claim("Purpose",isPreAuth? "2FA_Verification": "Access")
             };
 
-            if (!isPreAuth && user.Role != null)
+            if (!isPreAuth)
             {
-                claims.Add(new Claim(ClaimTypes.Role,user.Role.RoleName));
+                string? roleName = user.Role?.RoleName;
+                if (string.IsNullOrWhiteSpace(roleName))
+                {
+                    throw new InvalidOperationException("User role is not configured.");
+                }
+                claims.Add(new Claim(ClaimTypes.Role, roleName));
             }
 
             DateTime expiry = isPreAuth? DateTime.UtcNow.AddMinutes(5): DateTime.UtcNow.AddHours(2);
