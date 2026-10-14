@@ -138,6 +138,21 @@ namespace LoanApplication.Infrastructure.Repositories
             return Math.Round((decimal)amount, 2);
         }
 
+        public async Task<List<CustomerScoreCardDto>> GetAllCustomersAsync()
+        {
+            var customers = await db.Customers
+                .Select(c => new CustomerScoreCardDto
+                {
+                    CustomerId = c.CustomerId,
+                    Name = c.FirstName + " " + c.LastName,
+                    Email = c.Email,
+                    Income = c.MonthlyIncome
+                })
+                .ToListAsync();
+
+            return customers;
+        }
+
         private static string GetRiskCategory(int score)
         {
             if (score >= 800)
