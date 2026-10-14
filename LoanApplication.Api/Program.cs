@@ -48,6 +48,7 @@ builder.Services.AddScoped<IKycService, KycService>();
 // Penalty service 
 builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IForeClosureService, ForeClosureService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddMemoryCache();
