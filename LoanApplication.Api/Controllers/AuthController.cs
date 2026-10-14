@@ -1,10 +1,9 @@
-﻿using LoanApplication.Application.DTO;
+﻿
+using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
-using LoanApplication.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
 
 namespace LoanApplication.Api.Controllers
 {
@@ -19,27 +18,36 @@ namespace LoanApplication.Api.Controllers
         }
 
         // REGISTER
-
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register(RegisterDto dto)
+        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
-            bool result =await service.RegisterUserAsync(dto);
+            bool result = await service.RegisterUserAsync(dto);
             if (!result)
             {
-                return BadRequest(new{message = "Email already exists."});
+                return BadRequest(new
+                {
+                    message = "Email already exists."
+                });
             }
-            return Ok(new{message = "Registration successful."});
+            return Ok(new
+            {
+                message = "Registration successful."
+            });
         }
 
         // LOGIN
-
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(LoginDto dto)
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
-            var result =await service.LoginAsync(dto);
-            if (result.Token == null &&result.PreAuthToken == null)
+            var result = await service.LoginAsync(dto);
+            // First-time 2FA setup returns SetupToken.
+            // Existing 2FA returns PreAuthToken.
+            // Normal login returns Access Token.
+            if (result.Token == null &&
+                result.PreAuthToken == null &&
+                result.SetupToken == null)
             {
                 return Unauthorized(result);
             }
@@ -47,13 +55,14 @@ namespace LoanApplication.Api.Controllers
         }
 
         // GOOGLE LOGIN
-
         [HttpPost]
         [Route("google")]
-        public async Task<IActionResult> GoogleLogin(GoogleAuthDto dto)
+        public async Task<IActionResult> GoogleLogin([FromBody] GoogleAuthDto dto)
         {
-            var result =await service.GoogleLoginAsync(dto);
-            if (result.Token == null &&result.PreAuthToken == null)
+            var result = await service.GoogleLoginAsync(dto);
+            if (result.Token == null &&
+                result.PreAuthToken == null &&
+                result.SetupToken == null)
             {
                 return Unauthorized(result);
             }
@@ -64,10 +73,8 @@ namespace LoanApplication.Api.Controllers
         [Authorize(Policy = "AccessTokenOnly")]
         [HttpPut]
         [Route("complete-profile")]
-        public async Task<IActionResult> CompleteProfile(
-            [FromBody] CompleteProfileDto dto)
+        public async Task<IActionResult> CompleteProfile([FromBody] CompleteProfileDto dto)
         {
-            // Require a full access token, not a 2FA pre-auth token.
             var purpose = User.FindFirst("Purpose")?.Value;
             if (purpose != "Access")
             {
@@ -76,10 +83,7 @@ namespace LoanApplication.Api.Controllers
                     message = "A valid access token is required."
                 });
             }
-            // Get the user ID from the authenticated token.
-            var userIdValue = User.FindFirstValue(
-                ClaimTypes.NameIdentifier);
-
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!int.TryParse(userIdValue, out int userId))
             {
                 return Unauthorized(new
@@ -87,11 +91,7 @@ namespace LoanApplication.Api.Controllers
                     message = "Invalid user identity."
                 });
             }
-
-            // Call the service
-            var result = await service.CompleteProfileAsync(
-                userId, dto);
-
+            var result = await service.CompleteProfileAsync(userId, dto);
             if (!result)
             {
                 return NotFound(new
@@ -107,12 +107,11 @@ namespace LoanApplication.Api.Controllers
         }
 
         // VERIFY 2FA
-
         [HttpPost]
         [Route("verify-2fa")]
-        public async Task<IActionResult> VerifyTwoFactor(Verify2FaDto dto)
+        public async Task<IActionResult> VerifyTwoFactor([FromBody] Verify2FaDto dto)
         {
-            var result =await service.VerifyTwoFactorAsync(dto);
+            var result = await service.VerifyTwoFactorAsync(dto);
             if (result.Token == null)
             {
                 return Unauthorized(result);
@@ -120,30 +119,50 @@ namespace LoanApplication.Api.Controllers
             return Ok(result);
         }
 
-        // ENABLE 2FA
-
-        [Authorize(Policy = "AccessTokenOnly")]
+        // ENABLE 2FA - FIRST-TIME SETUP ONLY
+        [Authorize]
         [HttpPost]
         [Route("enable-2fa")]
         public async Task<IActionResult> EnableTwoFactor()
         {
-            var userIdClaim =User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdClaim,out int userId))
+            // The setup token must be authenticated and valid.
+            // It must not be a normal Access token.
+            var purpose = User.FindFirst("Purpose")?.Value;
+            if (purpose != "2FA_Setup")
             {
                 return Unauthorized(new
                 {
-                    message = "Invalid user."
+                    message =
+                        "A valid 2FA setup token is required."
                 });
             }
-            var result =await service.EnableTwoFactorAsync(userId);
-            if (result == null)
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdValue, out int userId))
             {
-                return NotFound(new
+                return Unauthorized(new
                 {
-                    message = "User not found."
+                    message = "Invalid user identity."
                 });
             }
-            return Ok(result);
+            try
+            {
+                var result = await service.EnableTwoFactorAsync(userId);
+                if (result == null)
+                {
+                    return NotFound(new
+                    {
+                        message = "User not found."
+                    });
+                }
+                return Ok(result);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(new
+                {
+                    message = ex.Message
+                });
+            }
         }
     }
 }
