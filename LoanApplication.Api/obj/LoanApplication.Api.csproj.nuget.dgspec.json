@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj": {}
+    "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Api\\LoanApplication.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj": {
+    "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Api\\LoanApplication.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj",
+        "projectUniqueName": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Api\\LoanApplication.Api.csproj",
         "projectName": "LoanApplication.Api",
-        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\LoanApplication.Api.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Api\\obj\\",
+        "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Api\\LoanApplication.Api.csproj",
+        "packagesPath": "C:\\Users\\shubham yadav\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shubham yadav\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -34,11 +34,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj": {
-                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj"
+              "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+                "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\LoanApplication.Application.csproj"
               },
-              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj"
+              "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj"
               }
             }
           }
@@ -546,20 +546,20 @@
         }
       }
     },
-    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+    "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\LoanApplication.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj",
+        "projectUniqueName": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\LoanApplication.Application.csproj",
         "projectName": "LoanApplication.Application",
-        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\obj\\",
+        "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\LoanApplication.Application.csproj",
+        "packagesPath": "C:\\Users\\shubham yadav\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shubham yadav\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -576,8 +576,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
-                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
+              "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
               }
             }
           }
@@ -938,20 +938,20 @@
         }
       }
     },
-    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+    "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
         "projectName": "LoanApplication.Domain",
-        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\obj\\",
+        "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\LoanApplication.Domain.csproj",
+        "packagesPath": "C:\\Users\\shubham yadav\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shubham yadav\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1314,20 +1314,20 @@
         }
       }
     },
-    "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
+    "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
         "projectName": "LoanApplication.Infrastructure",
-        "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\parth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Infrastructure\\LoanApplication.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\shubham yadav\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\parth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shubham yadav\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1344,11 +1344,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj": {
-                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Application\\LoanApplication.Application.csproj"
+              "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\LoanApplication.Application.csproj": {
+                "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Application\\LoanApplication.Application.csproj"
               },
-              "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
-                "projectPath": "C:\\Users\\parth\\OneDrive\\Desktop\\gitupload\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
+              "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\LoanApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\shubham yadav\\OneDrive\\Desktop\\Loan\\LoanApplication.Domain\\LoanApplication.Domain.csproj"
               }
             }
           }

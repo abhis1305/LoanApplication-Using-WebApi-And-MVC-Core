@@ -62,3 +62,23 @@ C:\Users\parth\OneDrive\Desktop\gitupload\LoanApplication.Infrastructure\obj\Deb
 C:\Users\parth\OneDrive\Desktop\gitupload\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.pdb
 C:\Users\parth\OneDrive\Desktop\gitupload\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.genruntimeconfig.cache
 C:\Users\parth\OneDrive\Desktop\gitupload\LoanApplication.Infrastructure\obj\Debug\net10.0\ref\LoanApplication.Infrastructure.dll
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Infrastructure.deps.json
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Infrastructure.runtimeconfig.json
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Infrastructure.dll
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Infrastructure.pdb
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Application.dll
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Domain.dll
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Application.pdb
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\bin\Debug\net10.0\LoanApplication.Domain.pdb
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.AssemblyInfo.cs
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.sourcelink.json
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanAppl.645EF28B.Up2Date
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.dll
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\refint\LoanApplication.Infrastructure.dll
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.pdb
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\LoanApplication.Infrastructure.genruntimeconfig.cache
+C:\Users\shubham yadav\OneDrive\Desktop\Loan\LoanApplication.Infrastructure\obj\Debug\net10.0\ref\LoanApplication.Infrastructure.dll

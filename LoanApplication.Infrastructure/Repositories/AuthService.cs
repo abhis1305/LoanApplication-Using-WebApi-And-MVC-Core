@@ -248,9 +248,7 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
         // COMPLETE PROFILE
-        public async Task<bool> CompleteProfileAsync(
-            int userId,
-            CompleteProfileDto dto)
+        public async Task<bool> CompleteProfileAsync(int userId,CompleteProfileDto dto)
         {
             // 1. Find the logged-in user
             var user = await db.Users.FirstOrDefaultAsync(u => u.UserId == userId);
@@ -284,8 +282,7 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
         // VERIFY 2FA
-        public async Task<AuthResponseDto> VerifyTwoFactorAsync(
-            Verify2FaDto dto)
+        public async Task<AuthResponseDto> VerifyTwoFactorAsync(Verify2FaDto dto)
         {
             var userId = GetUserIdFromPreAuthToken(dto.PreAuthToken);
             if (userId == null)
