@@ -310,5 +310,46 @@ namespace LoanApplication.Infrastructure.Repositories
                 };
             }).ToList();
         }
+
+        public async Task<List<FunnelStageDTO>> FetchFunnelAsync(DateTime? from, DateTime? to)
+        {
+            var (f, t) = Range(from, to);
+            var deals = db.LoanDeals.Where(d => d.AppliedDate >= f && d.AppliedDate <= t);
+
+            return new List<FunnelStageDTO>
+    {
+        new FunnelStageDTO { Stage = "Applications", Count = await deals.CountAsync() },
+        new FunnelStageDTO { Stage = "Under Review", Count = await deals.CountAsync(d => d.DealReviews!.Any()) },
+        new FunnelStageDTO { Stage = "Approved", Count = await deals.CountAsync(d =>
+            d.CurrentStatus == StatusApproved || d.CurrentStatus == StatusDisbursed) },
+        new FunnelStageDTO { Stage = "Disbursed", Count = await deals.CountAsync(d =>
+            d.CurrentStatus == StatusDisbursed) }
+    };
+        }
+
+        public async Task<List<CollectionMonthDTO>> FetchCollectionEfficiencyAsync(DateTime? from, DateTime? to)
+        {
+            var (f, t) = Range(from, to);
+            var data = await db.EmiSchedules
+                .Where(e => e.DueDate >= f && e.DueDate <= t)
+                .GroupBy(e => new { e.DueDate.Year, e.DueDate.Month })
+                .Select(g => new
+                {
+                    g.Key.Year,
+                    g.Key.Month,
+                    Billed = g.Sum(x => x.Emi),
+                    Collected = g.Where(x => x.PaymentStatus == EmiPaid).Sum(x => x.Emi)
+                })
+                .OrderBy(x => x.Year).ThenBy(x => x.Month)
+                .ToListAsync();
+
+            return data.Select(x => new CollectionMonthDTO
+            {
+                Month = x.Year + "-" + x.Month.ToString("00"),
+                BilledAmount = x.Billed,
+                CollectedAmount = x.Collected,
+                EfficiencyPercent = x.Billed > 0 ? Math.Round((double)(x.Collected * 100 / x.Billed), 2) : 0
+            }).ToList();
+        }
     }
 }

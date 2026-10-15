@@ -1,4 +1,7 @@
-﻿using LoanApplication.Application.Interfcae;
+﻿using LoanApplication.Application.DTO;
+using LoanApplication.Application.Interface;
+using LoanApplication.Application.Interfcae;
+using LoanApplication.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +12,11 @@ namespace LoanApplication.Api.Controllers
     public class DashboardController : ControllerBase
     {
         IDashboardService service;
-        public DashboardController(IDashboardService service)
+        IReportService reportService;
+        public DashboardController(IDashboardService service, IReportService reportService)
         {
             this.service = service;
+            this.reportService = reportService;
         }
 
         [HttpGet]
@@ -65,6 +70,22 @@ namespace LoanApplication.Api.Controllers
         public async Task<IActionResult> Documents(int customerId)
         {
             var d = await service.FetchDocumentsAsync(customerId);
+            return Ok(d);
+        }
+
+        [HttpGet]
+        [Route("Officer")]
+        public async Task<IActionResult> Officer(DateTime? from, DateTime? to)
+        {
+            // one after another on purpose: one DbContext cannot run two queries at the same time
+            var d = new OfficerDashboardDTO
+            {
+                LosCards = await reportService.FetchLosCardsAsync(),
+                LmsCards = await reportService.FetchLmsCardsAsync(),
+                Funnel = await reportService.FetchFunnelAsync(from, to),
+                PortfolioSummary = await reportService.FetchPortfolioAsync(),
+                CollectionEfficiency = await reportService.FetchCollectionEfficiencyAsync(from, to)
+            };
             return Ok(d);
         }
     }

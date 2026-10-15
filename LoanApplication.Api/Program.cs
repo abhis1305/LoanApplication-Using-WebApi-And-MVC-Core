@@ -72,18 +72,17 @@ builder.Services.AddHangfire(config =>
     config.UseSqlServerStorage(
         builder.Configuration.GetConnectionString("dbconn")));
 
-builder.Services.AddHangfireServer();
+//builder.Services.AddHangfireServer();
 
-var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
-    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
-        "emi-reminder-check", service => service.CheckUpcomingEmis(), Cron.Daily);
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+//    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
+//        "emi-reminder-check", service => service.CheckUpcomingEmis(), Cron.Daily);
+//}
 
-app.UseHangfireDashboard();
+//app.UseHangfireDashboard();
 
 // Swagger Middleware
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();

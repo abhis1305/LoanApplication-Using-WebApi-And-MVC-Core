@@ -1,4 +1,5 @@
-﻿using LoanApplication.Application.Interfcae;
+﻿using LoanApplication.Application.Interface;
+using LoanApplication.Application.Interfcae;
 using LoanApplication.Domain.Entities;
 using LoanApplication.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
