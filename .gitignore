@@ -1,13 +1,21 @@
+# Build output
+**/bin/
+**/obj/
+
 # Visual Studio
 .vs/
 *.suo
 *.user
+*.userosscache
+*.sln.docstates
 *.rsuser
+
+# User-specific project files
 *.csproj.user
 
-# Build output
-**/bin/
-**/obj/
+# Visual Studio cache and temporary files
+*.cache
+*.tmp
 
 # Visual Studio Code
 .vscode/
@@ -15,31 +23,29 @@
 # JetBrains Rider
 .idea/
 
-# User-specific files
-*.userosscache
-*.sln.docstates
-
 # Logs
 *.log
 
+# Operating system files
+Thumbs.db
+.DS_Store
+
 # Test results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
+TestResults/
+**/TestResults/
+
+# Publish output
+publish/
+**/publish/
 
 # NuGet packages
 *.nupkg
 *.snupkg
 
-# Temporary files
-*.tmp
-*.temp
-*.bak
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Local environment settings
+# Local environment settings and secrets
 .env
 .env.*
 !.env.example
+
+# Keep essential project files tracked
+# Do not ignore *.csproj, *.sln, or appsettings.json by default
