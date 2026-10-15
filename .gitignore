@@ -3,6 +3,7 @@
 *.user
 *.suo
 *.rsuser
+*.csproj.user
 
 # Build output
 **/bin/
@@ -16,10 +17,3 @@
 
 # Logs
 *.log
-
-# User-specific project files
-*.csproj.user
-
-# Temporary files
-*.tmp
-*.cache
