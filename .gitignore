@@ -4,27 +4,22 @@
 
 # Visual Studio
 .vs/
+**/.vs/
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 *.rsuser
-
-# User-specific project files
 *.csproj.user
 
-# Visual Studio cache and temporary files
-*.cache
-*.tmp
-
-# Visual Studio Code
+# IDE files
 .vscode/
-
-# JetBrains Rider
 .idea/
 
-# Logs
+# Logs and temporary files
 *.log
+*.cache
+*.tmp
 
 # Operating system files
 Thumbs.db
@@ -42,10 +37,10 @@ publish/
 *.nupkg
 *.snupkg
 
-# Local environment settings and secrets
+# Local environment settings
 .env
 .env.*
 !.env.example
 
-# Keep essential project files tracked
-# Do not ignore *.csproj, *.sln, or appsettings.json by default
+# Customer KYC uploads
+LoanApplication.Api/KycUploads/

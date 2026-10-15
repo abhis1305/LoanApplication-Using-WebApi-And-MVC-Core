@@ -15,6 +15,20 @@ namespace LoanApplication.Api.Controllers
             _service = service;
         }
 
+        // GET: api/ScoreCard/Customers
+        [HttpGet("Customers")]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            var customers = await _service.GetAllCustomersAsync();
+
+            return Ok(new
+            {
+                success = true,
+                data = customers
+            });
+        }
+
+        // POST: api/ScoreCard/Generate
         [HttpPost("Generate")]
         public async Task<IActionResult> Generate(
             [FromBody] ScoreCardRequestDto request)

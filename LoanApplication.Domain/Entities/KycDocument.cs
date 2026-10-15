@@ -18,5 +18,6 @@ namespace LoanApplication.Domain.Entities
         public string VerificationStatus { get; set; }
 
         public Customer? Customer { get; set; }
+        public string? RejectionReason { get; set; }
     }
 }
