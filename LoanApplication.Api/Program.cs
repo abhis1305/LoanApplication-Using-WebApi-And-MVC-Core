@@ -65,9 +65,7 @@ builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
 
-builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
-builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
-builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
+
 
 // HnagFire connection
 builder.Services.AddHangfire(config =>
