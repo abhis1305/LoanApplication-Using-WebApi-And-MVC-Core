@@ -27,3 +27,6 @@ obj/
 **/bin/
 **/obj/
 
+
+# Uploaded customer KYC documents
+LoanApplication.Api/KycUploads/
