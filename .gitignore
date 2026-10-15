@@ -1,7 +1,7 @@
 # Visual Studio
 .vs/
-*.user
 *.suo
+*.user
 *.rsuser
 *.csproj.user
 
@@ -12,8 +12,34 @@
 # Visual Studio Code
 .vscode/
 
-# Rider
+# JetBrains Rider
 .idea/
+
+# User-specific files
+*.userosscache
+*.sln.docstates
 
 # Logs
 *.log
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NuGet packages
+*.nupkg
+*.snupkg
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local environment settings
+.env
+.env.*
+!.env.example
