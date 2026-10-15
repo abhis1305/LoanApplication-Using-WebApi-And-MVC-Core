@@ -69,7 +69,7 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
         // LOGIN
-        // LOGIN
+        
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto)
         {
             // 1. Validate email and password input
@@ -284,9 +284,17 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
         // VERIFY 2FA
+
         public async Task<AuthResponseDto> VerifyTwoFactorAsync(Verify2FaDto dto)
         {
-            var userId = GetUserIdFromPreAuthToken(dto.PreAuthToken);
+            // 1. Select the correct token
+            string token = !string.IsNullOrWhiteSpace(dto.SetupToken)
+                ? dto.SetupToken
+                : dto.PreAuthToken;
+
+            // 2. Validate token and get user ID
+            var userId = GetUserIdFromPreAuthToken(token);
+
             if (userId == null)
             {
                 return new AuthResponseDto
@@ -295,11 +303,16 @@ namespace LoanApplication.Infrastructure.Repositories
                 };
             }
 
+            // 3. Read token purpose
             string purpose;
+
             try
             {
-                var jwt = new JwtSecurityTokenHandler().ReadJwtToken(dto.PreAuthToken);
-                purpose = jwt.Claims.FirstOrDefault(c => c.Type == "Purpose")?.Value ?? "";
+                var handler = new JwtSecurityTokenHandler();
+                var jwt = handler.ReadJwtToken(token);
+
+                purpose = jwt.Claims
+                    .FirstOrDefault(c => c.Type == "Purpose")?.Value ?? "";
             }
             catch
             {
@@ -308,6 +321,8 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "Invalid 2FA session."
                 };
             }
+
+            // 4. Check token purpose
             if (purpose != "2FA_Setup" &&
                 purpose != "2FA_Verification")
             {
@@ -316,7 +331,12 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "Invalid 2FA session purpose."
                 };
             }
-            var user = await db.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.UserId == userId);
+
+            // 5. Find user with role
+            var user = await db.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(u => u.UserId == userId.Value);
+
             if (user == null ||
                 string.IsNullOrWhiteSpace(user.TwoFactorSecret))
             {
@@ -325,7 +345,8 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "2FA setup not found."
                 };
             }
-            // Setup token is valid only before 2FA has been enabled
+
+            // 6. Setup token is valid only before 2FA is enabled
             if (purpose == "2FA_Setup" && user.IsTwoFactorEnabled)
             {
                 return new AuthResponseDto
@@ -333,7 +354,8 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "2FA is already enabled. Please log in again."
                 };
             }
-            // Verification token is valid only for an enabled account
+
+            // 7. Verification token requires enabled 2FA
             if (purpose == "2FA_Verification" && !user.IsTwoFactorEnabled)
             {
                 return new AuthResponseDto
@@ -341,7 +363,13 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "2FA setup is not complete."
                 };
             }
-            bool validCode = ValidateTotpCode(user.TwoFactorSecret, dto.Code);
+
+            // 8. Validate Google Authenticator OTP
+            bool validCode = ValidateTotpCode(
+                user.TwoFactorSecret,
+                dto.Code
+            );
+
             if (!validCode)
             {
                 return new AuthResponseDto
@@ -349,14 +377,16 @@ namespace LoanApplication.Infrastructure.Repositories
                     Message = "Invalid 2FA code."
                 };
             }
-            // Enable 2FA only after first-time setup OTP succeeds
+
+            // 9. Enable 2FA only after first-time setup succeeds
             if (purpose == "2FA_Setup")
             {
                 user.IsTwoFactorEnabled = true;
                 await db.SaveChangesAsync();
             }
 
-            string token = GenerateJwtToken(user, false);
+            // 10. Generate final access token
+            string accessToken = GenerateJwtToken(user, false);
 
             return new AuthResponseDto
             {
@@ -364,13 +394,14 @@ namespace LoanApplication.Infrastructure.Repositories
                 RequiresTwoFactorSetup = false,
                 SetupToken = null,
                 PreAuthToken = null,
-                Token = token,
+                Token = accessToken,
                 Role = user.Role?.RoleName,
                 Message = purpose == "2FA_Setup"
                     ? "2FA setup and verification successful."
                     : "2FA verification successful."
             };
         }
+
 
         // ENABLE 2FA
         public async Task<Setup2FaDto> EnableTwoFactorAsync(int userId)

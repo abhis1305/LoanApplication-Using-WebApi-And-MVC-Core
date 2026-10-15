@@ -39,11 +39,14 @@ namespace LoanApplication.Application.DTO
         public string? SetupToken { get; set; }
     }
 
+
     public class Verify2FaDto
     {
-        public string PreAuthToken { get; set; }
-        public string Code { get; set; }
+        public string? SetupToken { get; set; }
+        public string? PreAuthToken { get; set; }
+        public string Code { get; set; } = string.Empty;
     }
+
 
     public class Setup2FaDto
     {
