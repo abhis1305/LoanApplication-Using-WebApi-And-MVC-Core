@@ -1,32 +1,46 @@
-<<<<<<< HEAD
-=======
+# Build output
+**/bin/
+**/obj/
 
->>>>>>> origin/main
 # Visual Studio
 .vs/
 **/.vs/
-
-# Build output
-bin/
-obj/
-**/bin/
-**/obj/
-
-# User-specific files
-*.user
 *.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.csproj.user
 
 # IDE files
-<<<<<<< HEAD
 .vscode/
-=======
-.vscode/
->>>>>>> origin/main
+.idea/
 
-# .NET generated build files
-**/bin/
-**/obj/
+# Logs and temporary files
+*.log
+*.cache
+*.tmp
 
+# Operating system files
+Thumbs.db
+.DS_Store
 
-# Uploaded customer KYC documents
+# Test results
+TestResults/
+**/TestResults/
+
+# Publish output
+publish/
+**/publish/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+
+# Local environment settings
+.env
+.env.*
+!.env.example
+
+# Customer KYC uploads
 LoanApplication.Api/KycUploads/

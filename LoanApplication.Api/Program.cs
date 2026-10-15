@@ -7,6 +7,8 @@ using LoanApplication.Infrastructure.Repositories;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Hangfire;
+using Hangfire.SqlServer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 
@@ -59,11 +61,31 @@ builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
-
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
 
+
+
+// HnagFire connection
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(
+        builder.Configuration.GetConnectionString("dbconn")));
+
+builder.Services.AddHangfireServer();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
+        "emi-reminder-check", service => service.CheckUpcomingEmis(), Cron.Daily);
+}
+
+app.UseHangfireDashboard();
+
+// Swagger Middleware
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IReportService, ReportService>();
