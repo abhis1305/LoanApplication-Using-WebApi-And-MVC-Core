@@ -3,6 +3,7 @@ using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace LoanApplication.Api.Controllers
 {
@@ -17,16 +18,22 @@ namespace LoanApplication.Api.Controllers
             this.service = service;
         }
 
-        // CUSTOMER: Upload KYC Document
+
         [Authorize(Roles = "User")]
         [HttpPost]
         [Route("upload")]
-        public async Task<IActionResult> Upload(
-            [FromForm] UploadKycDocumentDto dto,
-            [FromQuery] int userId)
+        public async Task<IActionResult> Upload([FromForm] UploadKycDocumentDto dto)
         {
+            // Get the logged-in user's ID from the JWT token
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdValue, out int userId))
+            {
+                return Unauthorized(new
+                {
+                    message = "Invalid user identity."
+                });
+            }
             var result = await service.UploadDocumentAsync(userId, dto);
-
             if (!result)
             {
                 return BadRequest(new
@@ -34,7 +41,6 @@ namespace LoanApplication.Api.Controllers
                     message = "Document upload failed."
                 });
             }
-
             return Ok(new
             {
                 message = "Document uploaded successfully. Status: Pending."
@@ -42,40 +48,54 @@ namespace LoanApplication.Api.Controllers
         }
 
         // CUSTOMER: Get My Documents
+
         [Authorize(Roles = "User")]
         [HttpGet]
         [Route("my-documents")]
-        public async Task<IActionResult> MyDocuments(
-            [FromQuery] int userId)
+        public async Task<IActionResult> MyDocuments()
         {
+            // Get the logged-in user's ID from the JWT token
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdValue, out int userId))
+            {
+                return Unauthorized(new
+                {
+                    message = "Invalid user identity."
+                });
+            }
             var result = await service.GetMyDocumentsAsync(userId);
             return Ok(result);
         }
 
+
         // CUSTOMER: View Own Document
+
         [Authorize(Roles = "User")]
         [HttpGet]
         [Route("my-documents/{documentId}/view")]
-        public async Task<IActionResult> ViewMyDocument(
-            int documentId,
-            [FromQuery] int userId)
+        public async Task<IActionResult> ViewMyDocument(int documentId)
         {
-            var filePath = await service.GetMyDocumentFilePathAsync(
-                userId, documentId);
-
-            if (filePath == null)
+            // Get the logged-in user's ID from the JWT token
+            var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdValue, out int userId))
+            {
+                return Unauthorized(new
+                {
+                    message = "Invalid user identity."
+                });
+            }
+            // Fetch only this user's document
+            var filePath = await service.GetMyDocumentFilePathAsync(userId,documentId);
+            if (filePath == null || !System.IO.File.Exists(filePath))
             {
                 return NotFound(new
                 {
                     message = "Document not found."
                 });
             }
-
-            return PhysicalFile(
-                filePath,
-                GetContentType(filePath),
-                enableRangeProcessing: true);
+            return PhysicalFile(filePath,GetContentType(filePath),enableRangeProcessing: true            );
         }
+
 
         // OFFICER: Get Pending Customers
         [Authorize(Roles = "Loan Officer")]
