@@ -1,11 +1,13 @@
 ﻿using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LoanApplication.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "User")]
     public class CibilController : ControllerBase
     {
         ICibilService service;
