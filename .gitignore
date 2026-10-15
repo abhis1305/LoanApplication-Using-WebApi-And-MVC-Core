@@ -16,3 +16,10 @@
 
 # Logs
 *.log
+
+# User-specific project files
+*.csproj.user
+
+# Temporary files
+*.tmp
+*.cache
