@@ -106,5 +106,11 @@ namespace LoanApplication.Infrastructure.Repositories
             return loanAccount;
         }
 
+        public async Task<List<LoanAccount>> GetAllLoanAccounts()
+        {
+            return await db.LoanAccounts.Include(x => x.Customer).ToListAsync();
+        }
+
+       
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LoanApplication.Application.Interfcae;
 using LoanApplication.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace LoanApplication.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "User")]
     public class EmiScheduleController : ControllerBase
     {
         IEmiScheduleRepository service;
