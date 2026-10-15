@@ -11,31 +11,14 @@ using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
-
-using Hangfire;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. Add Controllers and Swagger
 builder.Services.AddControllers();
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AngularFrontend", policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
-
-
-
 builder.Services.AddEndpointsApiExplorer();
 
-// 2. Configure Swagger JWT Bearer Authentication
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -56,47 +39,38 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
+// 2. Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularFrontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 // 3. Register Application Services
 builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
 builder.Services.AddScoped<IWalletService, WalletService>();
+
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
 
-
-
-// HnagFire connection
-builder.Services.AddHangfire(config =>
-    config.UseSqlServerStorage(
-        builder.Configuration.GetConnectionString("dbconn")));
-
-builder.Services.AddHangfireServer();
-
-var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
-    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
-        "emi-reminder-check", service => service.CheckUpcomingEmis(), Cron.Daily);
-}
-
-app.UseHangfireDashboard();
-
-// Swagger Middleware
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 
-// 4. Register KYC, Penalty, Payment and Authentication Services
 builder.Services.AddScoped<IKycService, KycService>();
 builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-// 5. Configure Memory Cache and AutoMapper
+// 4. Memory Cache and AutoMapper
 builder.Services.AddMemoryCache();
 
 builder.Services.AddAutoMapper(
@@ -104,29 +78,25 @@ builder.Services.AddAutoMapper(
     typeof(SupportTicketProfile).Assembly
 );
 
-// 6. Configure SQL Server Database
+// 5. Configure SQL Server
 var connectionString =
     builder.Configuration.GetConnectionString("dbconn")
     ?? throw new InvalidOperationException(
-        "Database connection string 'dbconn' is not configured."
-    );
+        "Database connection string 'dbconn' is not configured.");
 
 builder.Services.AddDbContext<AppDBContext>(options =>
-    options.UseSqlServer(connectionString)
-);
+    options.UseSqlServer(connectionString));
 
-// 7. Configure Hangfire
+// 6. Configure Hangfire
 builder.Services.AddHangfire(config =>
-    config.UseSqlServerStorage(connectionString)
-);
+    config.UseSqlServerStorage(connectionString));
 
 builder.Services.AddHangfireServer();
 
-// 8. Configure JWT Authentication
+// 7. Configure JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException(
-        "Jwt:Key is not configured."
-    );
+        "Jwt:Key is not configured.");
 
 var jwtIssuer = builder.Configuration["Jwt:Issuer"]
     ?? "LoanAppAPI";
@@ -142,10 +112,8 @@ builder.Services
             new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-
                 IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(jwtKey)
-                ),
+                    Encoding.UTF8.GetBytes(jwtKey)),
 
                 ValidateIssuer = true,
                 ValidIssuer = jwtIssuer,
@@ -158,7 +126,7 @@ builder.Services
             };
     });
 
-// 9. Configure Authorization
+// 8. Configure Authorization
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AccessTokenOnly", policy =>
@@ -168,10 +136,10 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-// 10. Build Application
+// 9. Build Application
 var app = builder.Build();
 
-// 11. Register Daily EMI Reminder Job
+// 10. Register Daily EMI Reminder Job
 using (var scope = app.Services.CreateScope())
 {
     var recurringJobManager =
@@ -180,31 +148,31 @@ using (var scope = app.Services.CreateScope())
     recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
         "emi-reminder-check",
         service => service.CheckUpcomingEmis(),
-        Cron.Daily
-    );
+        Cron.Daily);
 }
 
-// 12. Serve Static Files
+// 11. Static Files
 app.UseStaticFiles();
 
-// 13. Enable Swagger in Development
+// 12. Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// 14. Configure Middleware
+// 13. Configure Middleware
 app.UseHttpsRedirection();
 app.UseCors("AngularFrontend");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 15. Enable Hangfire Dashboard
+// 14. Hangfire Dashboard
 app.UseHangfireDashboard();
 
-// 16. Map API Controllers
+// 15. Map Controllers
 app.MapControllers();
 
-// 17. Start Application
+// 16. Run Application
 app.Run();
