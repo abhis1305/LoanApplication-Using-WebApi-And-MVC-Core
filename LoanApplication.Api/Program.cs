@@ -11,8 +11,11 @@ using Hangfire.SqlServer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Text;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 // 1. Add Controllers and Swagger
 builder.Services.AddControllers();
@@ -169,6 +172,9 @@ app.UseCors("App");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+
+app.UseStaticFiles();
 
 // 14. Hangfire Dashboard
 app.UseHangfireDashboard();
