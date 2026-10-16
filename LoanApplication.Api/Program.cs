@@ -1,4 +1,3 @@
-
 using LoanApplication.Application.Interface;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
@@ -42,12 +41,13 @@ builder.Services.AddSwaggerGen(options =>
 // 2. Configure CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AngularFrontend", policy =>
+    options.AddPolicy("App", policy =>
     {
         policy
             .WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowCredentials();
     });
 });
 
@@ -112,6 +112,7 @@ builder.Services
             new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
+
                 IssuerSigningKey = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(jwtKey)),
 
@@ -163,7 +164,8 @@ if (app.Environment.IsDevelopment())
 
 // 13. Configure Middleware
 app.UseHttpsRedirection();
-app.UseCors("AngularFrontend");
+
+app.UseCors("App");
 
 app.UseAuthentication();
 app.UseAuthorization();
