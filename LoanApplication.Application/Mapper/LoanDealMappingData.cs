@@ -59,7 +59,7 @@ namespace LoanApplication.Application.Mapper
                 .ForMember(d => d.AmountOfEmi,
                     o => o.MapFrom(s => s.EmiAmount));
         }
-    
+
 
     }
 }

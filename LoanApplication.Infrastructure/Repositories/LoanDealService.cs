@@ -37,7 +37,7 @@ namespace LoanApplication.Infrastructure.Repositories
             {
                 3 => 11.5,
                 5 or 6 or 10 => 11.0,
-                
+
             };
 
         private static decimal CalculateEmi(
@@ -228,5 +228,5 @@ namespace LoanApplication.Infrastructure.Repositories
 }
 
 
-    
+
 
