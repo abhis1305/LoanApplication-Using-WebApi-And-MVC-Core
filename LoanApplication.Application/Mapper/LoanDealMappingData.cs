@@ -13,10 +13,28 @@ namespace LoanApplication.Application.Mapper
         {
             CreateMap<CreateLoanDealDto, LoanDeal>();
 
-            CreateMap<LoanDeal, LoanDealDto>();
+            CreateMap<LoanDeal, LoanDealDto>()
+                  .ForMember(
+                      dest => dest.CustomerName,
+                      opt => opt.MapFrom(src =>
+                          src.Customer == null
+                              ? ""
+                              : src.Customer.FirstName + " " + src.Customer.LastName));
 
-            CreateMap<LoanDeal, ApprovedLoanDto>().ForMember(dest => dest.RequestedAmount,
-                         opt => opt.MapFrom(src => src.LoanAmount));
+
+            CreateMap<LoanDeal, ApprovedLoanDto>()
+           .ForMember(
+               dest => dest.CustomerName,
+               opt => opt.MapFrom(src =>
+                   src.Customer == null
+                       ? ""
+                       : (src.Customer.FirstName + " " + src.Customer.LastName).Trim()
+               )
+           )
+           .ForMember(
+               dest => dest.RequestedAmount,
+               opt => opt.MapFrom(src => src.LoanAmount)
+           );
 
 
             CreateMap<SanctionLetter, SanctionLetterDocumentDto>().ForMember(dest => dest.FileName,

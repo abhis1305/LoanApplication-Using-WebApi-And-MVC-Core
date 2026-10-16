@@ -29,6 +29,7 @@ namespace LoanApplication.Api.Controllers
 
 
         [HttpPost("apply")]
+
         public async Task<IActionResult> ApplyLoan(
             [FromBody] CreateLoanDealDto dto)
         {

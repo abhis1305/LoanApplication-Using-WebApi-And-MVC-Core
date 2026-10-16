@@ -64,5 +64,37 @@ namespace LoanApplication.Api.Controllers
 
             return Ok(data);
         }
+
+        [HttpGet("{dealId:int}/view")]
+        public IActionResult ViewSanctionLetterPdf(int dealId)
+        {
+            var fileName = $"SanctionLetter_{dealId}.pdf";
+            var filePath = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "Documents",
+                fileName);
+
+            if (!System.IO.File.Exists(filePath))
+                return NotFound(new { message = "Sanction letter PDF not found." });
+
+            return PhysicalFile(filePath, "application/pdf");
+        }
+
+        [HttpGet("{dealId:int}/download")]
+        public IActionResult DownloadSanctionLetterPdf(int dealId)
+        {
+            var fileName = $"SanctionLetter_{dealId}.pdf";
+            var filePath = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "Documents",
+                fileName);
+
+            if (!System.IO.File.Exists(filePath))
+                return NotFound(new { message = "Sanction letter PDF not found." });
+
+            return PhysicalFile(filePath, "application/pdf", fileName);
+        }
     }
 }

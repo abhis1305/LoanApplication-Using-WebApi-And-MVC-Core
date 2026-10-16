@@ -1,19 +1,19 @@
 
+using Hangfire;
 using LoanApplication.Application.Interface;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
+using LoanApplication.Application.Mapper;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using LoanApplication.Application.Mapper;
 using Microsoft.IdentityModel.Tokens;
-
-using Hangfire;
+using QuestPDF.Infrastructure;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+QuestPDF.Settings.License = LicenseType.Community;
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -51,6 +51,17 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddMemoryCache();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Replace with your Angular app's URL
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
 
 builder.Services.AddAutoMapper(
     cfg => { },
@@ -147,6 +158,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseStaticFiles();
+
+app.UseCors("MyApp");
 app.UseHangfireDashboard();
 
 app.MapControllers();
