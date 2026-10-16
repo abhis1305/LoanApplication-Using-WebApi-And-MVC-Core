@@ -1,4 +1,4 @@
-﻿namespace LoanApplication.Application.DTO
+namespace LoanApplication.Application.DTO
 {
     public class LoanDealDto
     {
