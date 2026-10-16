@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using LoanApplication.Application.DTO;
 using LoanApplication.Domain.Entities;
 using System;
@@ -59,7 +59,7 @@ namespace LoanApplication.Application.Mapper
                 .ForMember(d => d.AmountOfEmi,
                     o => o.MapFrom(s => s.EmiAmount));
         }
-
+    
 
     }
 }
