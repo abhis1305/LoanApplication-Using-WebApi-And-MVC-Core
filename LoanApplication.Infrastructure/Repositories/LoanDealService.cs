@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
 using LoanApplication.Domain.Entities;
@@ -109,23 +109,55 @@ namespace LoanApplication.Infrastructure.Repositories
         }
 
 
+        //public async Task<List<LoanDealDto>> GetPendingLoansAsync()
+        //{
+        //    var pendingLoans = await db.LoanDeals
+        //        .Where(x => x.CurrentStatus == "Pending")
+        //        .OrderBy(x => x.AppliedDate)
+        //        .ToListAsync();
+
+        //    return mapper.Map<List<LoanDealDto>>(pendingLoans);
+        //}
+
         public async Task<List<LoanDealDto>> GetPendingLoansAsync()
         {
-            var pendingLoans = await db.LoanDeals
+            var loans = await db.LoanDeals
+                .Include(x => x.Customer)
                 .Where(x => x.CurrentStatus == "Pending")
                 .OrderBy(x => x.AppliedDate)
                 .ToListAsync();
 
-            return mapper.Map<List<LoanDealDto>>(pendingLoans);
+            return mapper.Map<List<LoanDealDto>>(loans);
         }
 
         public async Task<LoanDealDto?> GetLoanByIdAsync(int dealId)
         {
-            var loan = await db.LoanDeals.FirstOrDefaultAsync(x => x.DealId == dealId);
+            var loan = await db.LoanDeals
+                .Include(x => x.Customer)
+                .FirstOrDefaultAsync(x => x.DealId == dealId);
 
-            if (loan == null) return null;
+            if (loan == null)
+                return null;
 
-            return mapper.Map<LoanDealDto>(loan);
+            var result = mapper.Map<LoanDealDto>(loan);
+
+            result.CustomerName = loan.Customer!.FirstName + " " + loan.Customer.LastName;
+            result.Email = loan.Customer.Email;
+            result.Mobile = loan.Customer.MobileNo;
+            result.Pan = loan.Customer.Pan;
+            result.Salary = loan.Customer.MonthlyIncome;
+
+            var cibil = await db.CibilReports
+                .Where(x => x.CustomerId == loan.CustomerId)
+                .OrderByDescending(x => x.CheckDate)
+                .FirstOrDefaultAsync();
+
+            if (cibil != null)
+            {
+                result.CibilScore = cibil.CibilScore;
+            }
+
+            return result;
         }
 
 
