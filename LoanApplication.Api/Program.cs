@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Security.Claims;
 using System.Text;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,12 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(connectionString));
 
 // 5. Swagger with JWT Bearer authentication
+QuestPDF.Settings.License = LicenseType.Community;
+
+// 1. Add Controllers and Swagger
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -64,6 +71,20 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // 6. Application services
+// 2. Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("App", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
+    });
+});
+
+// 3. Register Application Services
 builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
@@ -72,6 +93,7 @@ builder.Services.AddScoped<IWalletService, WalletService>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
+
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IReportService, ReportService>();
@@ -82,6 +104,7 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // 7. Memory cache and AutoMapper
+// 4. Memory Cache and AutoMapper
 builder.Services.AddMemoryCache();
 
 builder.Services.AddAutoMapper(
@@ -89,6 +112,16 @@ builder.Services.AddAutoMapper(
     typeof(SupportTicketProfile).Assembly);
 
 // 8. Hangfire - register only once
+// 5. Configure SQL Server
+var connectionString =
+    builder.Configuration.GetConnectionString("dbconn")
+    ?? throw new InvalidOperationException(
+        "Database connection string 'dbconn' is not configured.");
+
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// 6. Configure Hangfire
 builder.Services.AddHangfire(config =>
     config.UseSqlServerStorage(connectionString));
 
@@ -98,6 +131,13 @@ builder.Services.AddHangfireServer();
 var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException(
         "Jwt:Key is not configured.");
+// 7. Configure JWT Authentication
+var jwtKey = builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException(
+        "Jwt:Key is not configured.");
+
+var jwtIssuer = builder.Configuration["Jwt:Issuer"]
+    ?? "LoanAppAPI";
 
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "LoanAppAPI";
 var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "LoanAppClients";
@@ -114,6 +154,8 @@ builder.Services
 
             ValidateIssuer = true,
             ValidIssuer = jwtIssuer,
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(jwtKey)),
 
             ValidateAudience = true,
             ValidAudience = jwtAudience,
@@ -126,6 +168,7 @@ builder.Services
     });
 
 // 10. Authorization
+// 8. Configure Authorization
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AccessTokenOnly", policy =>
@@ -137,6 +180,24 @@ builder.Services.AddAuthorization(options =>
 
 // 11. Build the application ONCE
 var app = builder.Build();
+
+// 9. Build Application
+var app = builder.Build();
+
+// 10. Register Daily EMI Reminder Job
+using (var scope = app.Services.CreateScope())
+{
+    var recurringJobManager =
+        scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+
+    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
+        "emi-reminder-check",
+        service => service.CheckUpcomingEmis(),
+        Cron.Daily);
+}
+
+// 11. Static Files
+app.UseStaticFiles();
 
 // 12. Swagger
 if (app.Environment.IsDevelopment())
@@ -151,6 +212,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseCors("AngularFrontend");
+// 13. Configure Middleware
+app.UseHttpsRedirection();
+
+app.UseCors("App");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -174,4 +239,14 @@ using (var scope = app.Services.CreateScope())
 app.MapControllers();
 
 // 17. Start
+
+app.UseStaticFiles();
+
+// 14. Hangfire Dashboard
+app.UseHangfireDashboard();
+
+// 15. Map Controllers
+app.MapControllers();
+
+// 16. Run Application
 app.Run();

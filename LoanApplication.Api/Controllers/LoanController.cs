@@ -1,4 +1,4 @@
-﻿using LoanApplication.Application.DTO;
+using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +29,7 @@ namespace LoanApplication.Api.Controllers
 
 
         [HttpPost("apply")]
+
         public async Task<IActionResult> ApplyLoan(
             [FromBody] CreateLoanDealDto dto)
         {

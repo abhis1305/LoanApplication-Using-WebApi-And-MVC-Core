@@ -13,6 +13,8 @@ namespace LoanApplication.Application.Interface
         Task<List<TATRowDTO>> FetchTatAsync(DateTime? from, DateTime? to);
         Task<List<CibilRangeRowDTO>> FetchCibilRangeAsync(DateTime? from, DateTime? to);
         Task<List<ScoreCardRowDTO>> FetchScoreCardWiseAsync(DateTime? from, DateTime? to);
+        Task<List<FunnelStageDTO>> FetchFunnelAsync(DateTime? from, DateTime? to);
+        Task<List<CollectionMonthDTO>> FetchCollectionEfficiencyAsync(DateTime? from, DateTime? to);
 
         // lms
         Task<LmsCardsDTO> FetchLmsCardsAsync();

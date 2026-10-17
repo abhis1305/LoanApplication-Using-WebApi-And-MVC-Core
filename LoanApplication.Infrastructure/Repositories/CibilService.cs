@@ -15,6 +15,34 @@ namespace LoanApplication.Infrastructure.Repositories
             this.db = db;
         }
 
+        public async Task<CibilCustomerProfileDto?> GetCustomerProfileAsync(
+    int userId)
+        {
+            var user = await db.Users
+                .FirstOrDefaultAsync(u => u.UserId == userId);
+
+            if (user == null || user.CustomerId == null)
+            {
+                return null;
+            }
+
+            var customer = await db.Customers
+                .FirstOrDefaultAsync(c =>
+                    c.CustomerId == user.CustomerId.Value);
+
+            if (customer == null)
+            {
+                return null;
+            }
+
+            return new CibilCustomerProfileDto
+            {
+                CustomerId = customer.CustomerId,
+                CustomerName = $"{customer.FirstName} {customer.LastName}".Trim(),
+                PanNumber = customer.Pan
+            };
+        }
+
         public async Task<CibilScoreResponseDto> GetCibilScoreAsync(int customerId)
         {
             var customer = await db.Customers
