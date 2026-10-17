@@ -111,6 +111,20 @@ namespace LoanApplication.Infrastructure.Repositories
             return await db.LoanAccounts.Include(x => x.Customer).ToListAsync();
         }
 
-       
+        public async Task<List<LoanAccount>> GetLoanAccountsByUserId(int userId)
+        {
+            var customerId = await db.Users
+                .Where(u => u.UserId == userId)
+                .Select(u => u.CustomerId)
+                .FirstOrDefaultAsync();
+
+            if (customerId == null)
+            {
+                return new List<LoanAccount>();
+            }
+            return await db.LoanAccounts.Where(l => l.CustomerId == customerId).ToListAsync();
+        }
+
+
     }
 }

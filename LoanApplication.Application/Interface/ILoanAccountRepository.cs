@@ -12,6 +12,7 @@ namespace LoanApplication.Application.Interfcae
         Task<LoanAccount> UpdateLoanAccount(LoanAccount loanAccount);
         Task<LoanAccount> GetLoanAccountById(int loanAccountId);
         Task<LoanAccount> GetByLoanDealId(int loanDealId);
+        Task<List<LoanAccount>> GetLoanAccountsByUserId(int userId);
         Task<List<LoanAccount>> GetAllLoanAccounts();
     }
 }

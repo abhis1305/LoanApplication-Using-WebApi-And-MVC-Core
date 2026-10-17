@@ -4,6 +4,8 @@ using LoanApplication.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
 
 namespace LoanApplication.Api.Controllers
 {
@@ -70,6 +72,20 @@ namespace LoanApplication.Api.Controllers
         {
             await emiRepo.CheckUpcomingEmis();
             return Ok(new { message = "EMI Reminders Checked Successfully" });
+        }
+
+        [HttpGet]
+        [Route("MyLoanAccounts")]
+        public async Task<IActionResult> MyLoanAccounts([FromServices] ILoanAccountRepository loanRepo)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var accounts = await loanRepo.GetLoanAccountsByUserId(userId);
+            return Ok(accounts);
         }
     }
 }
