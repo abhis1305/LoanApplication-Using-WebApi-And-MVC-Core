@@ -1,4 +1,5 @@
 ﻿using LoanApplication.Application.Interfcae;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,7 @@ namespace LoanApplication.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Loan Officer")]
     public class LoanAccountController : ControllerBase
     {
         ILoanAccountRepository loan;
@@ -41,7 +43,7 @@ namespace LoanApplication.Api.Controllers
                 }
             });
         }
-      
+
         [HttpGet]
         [Route("GetLA/{id}")]
         public async Task<IActionResult> LoanAccountById(int id)
@@ -52,6 +54,14 @@ namespace LoanApplication.Api.Controllers
                 return NotFound(new { message = "Loan Account Not Found" });
             }
             return Ok(account);
+        }
+
+        [HttpGet]
+        [Route("GetAllLA")]
+        public async Task<IActionResult> GetAllLoanAccounts()
+        {
+            var accounts = await loan.GetAllLoanAccounts();
+            return Ok(accounts);
         }
     }
 }

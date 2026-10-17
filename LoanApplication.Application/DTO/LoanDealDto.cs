@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace LoanApplication.Application.DTO
 {
     public class LoanDealDto
@@ -9,6 +5,18 @@ namespace LoanApplication.Application.DTO
         public int DealId { get; set; }
 
         public int CustomerId { get; set; }
+
+        public string CustomerName { get; set; } = string.Empty;
+
+        public string? Email { get; set; }
+
+        public string? Mobile { get; set; }
+
+        public string? Pan { get; set; }
+
+        public decimal? Salary { get; set; }
+
+        public int? CibilScore { get; set; }
 
         public string LoanType { get; set; } = string.Empty;
 
@@ -23,6 +31,8 @@ namespace LoanApplication.Application.DTO
         public decimal ApprovedAmount { get; set; }
 
         public string CurrentStatus { get; set; } = string.Empty;
+
+        public string? RejectionReason { get; set; }
 
         public DateTime AppliedDate { get; set; }
     }

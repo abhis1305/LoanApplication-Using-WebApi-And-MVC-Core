@@ -1,19 +1,50 @@
-
 using LoanApplication.Application.Interface;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Hangfire.SqlServer;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
+using System.Security.Claims;
 using System.Text;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// 1. Controllers
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+// 2. CORS for Angular
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularFrontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+// 3. Database connection
+var connectionString =
+    builder.Configuration.GetConnectionString("dbconn")
+    ?? throw new InvalidOperationException(
+        "Database connection string 'dbconn' is not configured.");
+
+// 4. Entity Framework Core
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// 5. Swagger with JWT Bearer authentication
+QuestPDF.Settings.License = LicenseType.Community;
 
 // 1. Add Controllers and Swagger
 builder.Services.AddControllers();
@@ -28,7 +59,7 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Enter your JWT access token."
+        Description = "Enter your valid ACCESS token."
     });
 
     options.AddSecurityRequirement(document =>
@@ -39,15 +70,17 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
+// 6. Application services
 // 2. Configure CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AngularFrontend", policy =>
+    options.AddPolicy("App", policy =>
     {
         policy
             .WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowCredentials();
     });
 });
 
@@ -70,14 +103,15 @@ builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+// 7. Memory cache and AutoMapper
 // 4. Memory Cache and AutoMapper
 builder.Services.AddMemoryCache();
 
 builder.Services.AddAutoMapper(
     cfg => { },
-    typeof(SupportTicketProfile).Assembly
-);
+    typeof(SupportTicketProfile).Assembly);
 
+// 8. Hangfire - register only once
 // 5. Configure SQL Server
 var connectionString =
     builder.Configuration.GetConnectionString("dbconn")
@@ -93,6 +127,10 @@ builder.Services.AddHangfire(config =>
 
 builder.Services.AddHangfireServer();
 
+// 9. JWT authentication
+var jwtKey = builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException(
+        "Jwt:Key is not configured.");
 // 7. Configure JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException(
@@ -101,31 +139,35 @@ var jwtKey = builder.Configuration["Jwt:Key"]
 var jwtIssuer = builder.Configuration["Jwt:Issuer"]
     ?? "LoanAppAPI";
 
-var jwtAudience = builder.Configuration["Jwt:Audience"]
-    ?? "LoanAppClients";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "LoanAppAPI";
+var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "LoanAppClients";
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.TokenValidationParameters =
-            new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtKey)),
+
+            ValidateIssuer = true,
+            ValidIssuer = jwtIssuer,
                 IssuerSigningKey = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(jwtKey)),
 
-                ValidateIssuer = true,
-                ValidIssuer = jwtIssuer,
+            ValidateAudience = true,
+            ValidAudience = jwtAudience,
 
-                ValidateAudience = true,
-                ValidAudience = jwtAudience,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero,
 
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero
-            };
+            RoleClaimType = ClaimTypes.Role
+        };
     });
 
+// 10. Authorization
 // 8. Configure Authorization
 builder.Services.AddAuthorization(options =>
 {
@@ -135,6 +177,9 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim("Purpose", "Access");
     });
 });
+
+// 11. Build the application ONCE
+var app = builder.Build();
 
 // 9. Build Application
 var app = builder.Build();
@@ -161,12 +206,41 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// 13. Middleware
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+app.UseCors("AngularFrontend");
 // 13. Configure Middleware
 app.UseHttpsRedirection();
-app.UseCors("AngularFrontend");
+
+app.UseCors("App");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// 14. Hangfire Dashboard
+app.UseHangfireDashboard();
+
+// 15. Schedule daily EMI reminder
+using (var scope = app.Services.CreateScope())
+{
+    var recurringJobManager =
+        scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+
+    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
+        "emi-reminder-check",
+        service => service.CheckUpcomingEmis(),
+        Cron.Daily);
+}
+
+// 16. Map controllers
+app.MapControllers();
+
+// 17. Start
+
+app.UseStaticFiles();
 
 // 14. Hangfire Dashboard
 app.UseHangfireDashboard();
