@@ -1,3 +1,4 @@
+
 using LoanApplication.Application.Interface;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
@@ -17,30 +18,41 @@ using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Controllers
+// 1. Controllers and API Explorer
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// 2. CORS for Angular
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("App", policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials();
-    });
-});
-
-// 3. Database connection
+// 2. Database connection
 var connectionString =
     builder.Configuration.GetConnectionString("dbconn")
     ?? throw new InvalidOperationException(
         "Database connection string 'dbconn' is not configured.");
 
-// 4. Entity Framework Core
+// 3. Entity Framework Core
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// 4. CORS for Angular frontend
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularFrontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
+
+
+var connectionString =
+    builder.Configuration.GetConnectionString("dbconn")
+    ?? throw new InvalidOperationException(
+        "Database connection string 'dbconn' is not configured.");
+
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -57,7 +69,7 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Enter your valid ACCESS token."
+        Description = "Enter your valid access token."
     });
 
     options.AddSecurityRequirement(document =>
@@ -106,8 +118,12 @@ var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException(
         "Jwt:Key is not configured.");
 
-var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "LoanAppAPI";
-var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "LoanAppClients";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"]
+    ?? "LoanAppAPI";
+
+var jwtAudience = builder.Configuration["Jwt:Audience"]
+    ?? "LoanAppClients";
+
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -142,7 +158,7 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-// 12. Build the application (only once)
+
 var app = builder.Build();
 
 // 13. Swagger
@@ -152,32 +168,37 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// 14. Middleware (order matters)
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseCors("App");
+app.UseRouting();
+
+app.UseCors("AngularFrontend");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 15. Hangfire Dashboard
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+
 app.UseHangfireDashboard();
 
-// 16. Schedule daily EMI reminder (only once)
 using (var scope = app.Services.CreateScope())
 {
     var recurringJobManager =
         scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
 
     recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
-    "emi-reminder-check",
-    service => service.CheckUpcomingEmis(),
-    Cron.Minutely);
+        "emi-reminder-check",
+        service => service.CheckUpcomingEmis(),
+        Cron.Daily);
 }
+
 
 // 17. Map controllers
 app.MapControllers();
 
-// 18. Run
 app.Run();
