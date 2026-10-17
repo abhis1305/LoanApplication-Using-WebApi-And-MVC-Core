@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoanApplication.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20261013081907_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20261015103913_loan")]
+    partial class loan
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -348,6 +348,9 @@ namespace LoanApplication.Infrastructure.Migrations
 
                     b.Property<string>("FilePath")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RejectionReason")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VerificationStatus")
