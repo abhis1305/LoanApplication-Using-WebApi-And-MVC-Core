@@ -78,6 +78,7 @@ builder.Services.AddScoped<IWalletService, WalletService>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
@@ -169,7 +170,7 @@ app.UseAuthorization();
 // 15. Hangfire dashboard
 app.UseHangfireDashboard();
 
-// 16. Register daily EMI reminder job once
+// 16. Register daily EMI reminder job
 using (var scope = app.Services.CreateScope())
 {
     var recurringJobManager =
