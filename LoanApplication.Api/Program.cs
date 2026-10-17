@@ -1,16 +1,15 @@
 
+using Hangfire;
 using LoanApplication.Application.Interface;
 using LoanApplication.Application.Interfcae;
 using LoanApplication.Application.Mapper;
 using LoanApplication.Infrastructure.Data;
 using LoanApplication.Infrastructure.Repositories;
-
+using LoanApplication.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
-
-using Hangfire;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,6 +72,7 @@ builder.Services.AddScoped<IKycService, KycService>();
 builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICustomerProfileService,CustomerProfileService>();
 
 // 5. Configure Memory Cache and AutoMapper
 builder.Services.AddMemoryCache();

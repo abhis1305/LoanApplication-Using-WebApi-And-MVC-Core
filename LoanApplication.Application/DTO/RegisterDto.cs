@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace LoanApplication.Application.DTO
@@ -58,4 +59,6 @@ namespace LoanApplication.Application.DTO
     {
         public string IdToken { get; set; }
     }
+
+
 }
