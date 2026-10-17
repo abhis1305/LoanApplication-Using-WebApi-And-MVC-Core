@@ -33,6 +33,7 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(connectionString));
 
 // 4. CORS for Angular frontend
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AngularFrontend", policy =>
@@ -44,6 +45,16 @@ builder.Services.AddCors(options =>
             .AllowCredentials();
     });
 });
+
+
+
+var connectionString =
+    builder.Configuration.GetConnectionString("dbconn")
+    ?? throw new InvalidOperationException(
+        "Database connection string 'dbconn' is not configured.");
+
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(connectionString));
 
 // 5. QuestPDF license
 QuestPDF.Settings.License = LicenseType.Community;
@@ -78,6 +89,7 @@ builder.Services.AddScoped<IWalletService, WalletService>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
@@ -112,6 +124,7 @@ var jwtIssuer = builder.Configuration["Jwt:Issuer"]
 var jwtAudience = builder.Configuration["Jwt:Audience"]
     ?? "LoanAppClients";
 
+
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -145,7 +158,7 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-// 12. Build application once
+
 var app = builder.Build();
 
 // 13. Swagger
@@ -155,7 +168,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// 14. Middleware
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -166,10 +179,13 @@ app.UseCors("AngularFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 15. Hangfire dashboard
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+
 app.UseHangfireDashboard();
 
-// 16. Register daily EMI reminder job once
 using (var scope = app.Services.CreateScope())
 {
     var recurringJobManager =
@@ -181,8 +197,8 @@ using (var scope = app.Services.CreateScope())
         Cron.Daily);
 }
 
+
 // 17. Map controllers
 app.MapControllers();
 
-// 18. Run application
 app.Run();
