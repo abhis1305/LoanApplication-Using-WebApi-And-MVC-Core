@@ -744,7 +744,7 @@ namespace LoanApplication.Infrastructure.Repositories
                 Password = hashedPassword,
 
                 // Customer role
-                RoleId = 2,
+                RoleId = 1,
                 CustomerId = customer.CustomerId,
                 IsTwoFactorEnabled = false
             };

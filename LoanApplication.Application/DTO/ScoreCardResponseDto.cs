@@ -12,6 +12,8 @@
 
         public decimal AvailableEmi { get; set; }
 
+        public string? Message { get; set; }
+
         public List<LoanOptionDto> LoanOptions { get; set; } = new();
     }
 

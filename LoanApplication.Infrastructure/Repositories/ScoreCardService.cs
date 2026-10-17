@@ -1,4 +1,5 @@
-﻿using LoanApplication.Application.DTO;
+﻿
+using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
 using LoanApplication.Domain.Entities;
 using LoanApplication.Infrastructure.Data;
@@ -54,12 +55,34 @@ namespace LoanApplication.Infrastructure.Repositories
             // Determine risk category
             string riskCategory = GetRiskCategory(cibil.CibilScore);
 
-            // Calculate allowable EMI
+            // Calculate maximum allowable EMI (40% of income)
             decimal maximumEmi = monthlyIncome * 0.40m;
 
-            decimal availableEmi = Math.Max(
-                0m,
-                maximumEmi - monthlyInvestment);
+            // Check if monthly obligations are too high
+            bool investmentTooHigh = monthlyInvestment >= maximumEmi;
+
+            decimal availableEmi = investmentTooHigh
+                ? 0m
+                : maximumEmi - monthlyInvestment;
+
+            string? eligibilityMessage = investmentTooHigh
+                ? "You cannot take a loan because your monthly financial obligations are too high compared to your salary."
+                : null;
+
+            // Stop before generating loan options if obligations are too high
+            if (investmentTooHigh)
+            {
+                return new ScoreCardResponseDto
+                {
+                    CustomerId = customer.CustomerId,
+                    CibilScore = cibil.CibilScore,
+                    RiskCategory = riskCategory,
+                    MaximumAllowableEmi = maximumEmi,
+                    AvailableEmi = 0m,
+                    LoanOptions = new List<LoanOptionDto>(),
+                    Message = eligibilityMessage
+                };
+            }
 
             // Loan options
             var options = new[]
@@ -107,7 +130,8 @@ namespace LoanApplication.Infrastructure.Repositories
                 RiskCategory = riskCategory,
                 MaximumAllowableEmi = maximumEmi,
                 AvailableEmi = availableEmi,
-                LoanOptions = savedOptions
+                LoanOptions = savedOptions,
+                Message = null
             };
         }
 
@@ -140,15 +164,19 @@ namespace LoanApplication.Infrastructure.Repositories
 
         public async Task<List<CustomerScoreCardDto>> GetAllCustomersAsync()
         {
-            var customers = await db.Customers
-                .Select(c => new CustomerScoreCardDto
+            var customers = await (
+                from c in db.Customers
+                join u in db.Users
+                    on c.CustomerId equals u.CustomerId
+                where u.RoleId == 1
+                select new CustomerScoreCardDto
                 {
                     CustomerId = c.CustomerId,
                     Name = c.FirstName + " " + c.LastName,
                     Email = c.Email,
                     Income = c.MonthlyIncome
-                })
-                .ToListAsync();
+                }
+            ).ToListAsync();
 
             return customers;
         }
