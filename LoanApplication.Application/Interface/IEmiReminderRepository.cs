@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LoanApplication.Application.Interfcae
+namespace LoanApplication.Application.Interface
 {
     public interface IEmiReminderRepository
     {
