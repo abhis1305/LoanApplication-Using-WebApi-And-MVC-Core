@@ -24,12 +24,13 @@ builder.Services.AddEndpointsApiExplorer();
 // 2. CORS for Angular
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AngularFrontend", policy =>
+    options.AddPolicy("App", policy =>
     {
         policy
             .WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowCredentials();
     });
 });
 
@@ -43,13 +44,10 @@ var connectionString =
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(connectionString));
 
-// 5. Swagger with JWT Bearer authentication
+// 5. QuestPDF license
 QuestPDF.Settings.License = LicenseType.Community;
 
-// 1. Add Controllers and Swagger
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-
+// 6. Swagger with JWT Bearer authentication
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -70,21 +68,7 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
-// 6. Application services
-// 2. Configure CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("App", policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials();
-    });
-});
-
-// 3. Register Application Services
+// 7. Application services
 builder.Services.AddScoped<ICibilService, CibilService>();
 builder.Services.AddScoped<IScoreCardService, ScoreCardService>();
 builder.Services.AddScoped<IEligibilityService, EligibilityService>();
@@ -93,6 +77,7 @@ builder.Services.AddScoped<IWalletService, WalletService>();
 builder.Services.AddScoped<ILoanAccountRepository, LoanAccountRepository>();
 builder.Services.AddScoped<IEmiScheduleRepository, EmiScheduleRepository>();
 builder.Services.AddScoped<IEmiReminderRepository, EmiReminderRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
@@ -103,41 +88,23 @@ builder.Services.AddScoped<IPenaltyService, PenaltyService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-// 7. Memory cache and AutoMapper
-// 4. Memory Cache and AutoMapper
+// 8. Memory cache and AutoMapper
 builder.Services.AddMemoryCache();
 
 builder.Services.AddAutoMapper(
     cfg => { },
     typeof(SupportTicketProfile).Assembly);
 
-// 8. Hangfire - register only once
-// 5. Configure SQL Server
-var connectionString =
-    builder.Configuration.GetConnectionString("dbconn")
-    ?? throw new InvalidOperationException(
-        "Database connection string 'dbconn' is not configured.");
-
-builder.Services.AddDbContext<AppDBContext>(options =>
-    options.UseSqlServer(connectionString));
-
-// 6. Configure Hangfire
+// 9. Hangfire
 builder.Services.AddHangfire(config =>
     config.UseSqlServerStorage(connectionString));
 
 builder.Services.AddHangfireServer();
 
-// 9. JWT authentication
+// 10. JWT authentication
 var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException(
         "Jwt:Key is not configured.");
-// 7. Configure JWT Authentication
-var jwtKey = builder.Configuration["Jwt:Key"]
-    ?? throw new InvalidOperationException(
-        "Jwt:Key is not configured.");
-
-var jwtIssuer = builder.Configuration["Jwt:Issuer"]
-    ?? "LoanAppAPI";
 
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "LoanAppAPI";
 var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "LoanAppClients";
@@ -154,8 +121,6 @@ builder.Services
 
             ValidateIssuer = true,
             ValidIssuer = jwtIssuer,
-                IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(jwtKey)),
 
             ValidateAudience = true,
             ValidAudience = jwtAudience,
@@ -167,8 +132,7 @@ builder.Services
         };
     });
 
-// 10. Authorization
-// 8. Configure Authorization
+// 11. Authorization
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AccessTokenOnly", policy =>
@@ -178,75 +142,42 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-// 11. Build the application ONCE
+// 12. Build the application (only once)
 var app = builder.Build();
 
-// 9. Build Application
-var app = builder.Build();
-
-// 10. Register Daily EMI Reminder Job
-using (var scope = app.Services.CreateScope())
-{
-    var recurringJobManager =
-        scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
-
-    recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
-        "emi-reminder-check",
-        service => service.CheckUpcomingEmis(),
-        Cron.Daily);
-}
-
-// 11. Static Files
-app.UseStaticFiles();
-
-// 12. Swagger
+// 13. Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// 13. Middleware
+// 14. Middleware (order matters)
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-app.UseRouting();
-app.UseCors("AngularFrontend");
-// 13. Configure Middleware
-app.UseHttpsRedirection();
 
 app.UseCors("App");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 14. Hangfire Dashboard
+// 15. Hangfire Dashboard
 app.UseHangfireDashboard();
 
-// 15. Schedule daily EMI reminder
+// 16. Schedule daily EMI reminder (only once)
 using (var scope = app.Services.CreateScope())
 {
     var recurringJobManager =
         scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
 
     recurringJobManager.AddOrUpdate<IEmiReminderRepository>(
-        "emi-reminder-check",
-        service => service.CheckUpcomingEmis(),
-        Cron.Daily);
+    "emi-reminder-check",
+    service => service.CheckUpcomingEmis(),
+    Cron.Minutely);
 }
 
-// 16. Map controllers
+// 17. Map controllers
 app.MapControllers();
 
-// 17. Start
-
-app.UseStaticFiles();
-
-// 14. Hangfire Dashboard
-app.UseHangfireDashboard();
-
-// 15. Map Controllers
-app.MapControllers();
-
-// 16. Run Application
+// 18. Run
 app.Run();
