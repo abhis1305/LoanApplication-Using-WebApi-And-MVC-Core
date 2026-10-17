@@ -1,3 +1,4 @@
+
 using LoanApplication.Application.DTO;
 using LoanApplication.Application.Interface;
 using LoanApplication.Domain.Entities;
@@ -15,25 +16,19 @@ namespace LoanApplication.Infrastructure.Repositories
             this.db = db;
         }
 
-        public async Task<CibilCustomerProfileDto?> GetCustomerProfileAsync(
-    int userId)
+        public async Task<CibilCustomerProfileDto?> GetCustomerProfileAsync(int userId)
         {
             var user = await db.Users
                 .FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null || user.CustomerId == null)
-            {
                 return null;
-            }
 
             var customer = await db.Customers
-                .FirstOrDefaultAsync(c =>
-                    c.CustomerId == user.CustomerId.Value);
+                .FirstOrDefaultAsync(c => c.CustomerId == user.CustomerId.Value);
 
             if (customer == null)
-            {
                 return null;
-            }
 
             return new CibilCustomerProfileDto
             {
@@ -49,9 +44,7 @@ namespace LoanApplication.Infrastructure.Repositories
                 .FirstOrDefaultAsync(c => c.CustomerId == customerId);
 
             if (customer == null)
-            {
                 throw new KeyNotFoundException("Customer not found.");
-            }
 
             var report = await db.CibilReports
                 .Where(c => c.CustomerId == customerId)
@@ -60,10 +53,8 @@ namespace LoanApplication.Infrastructure.Repositories
                 .FirstOrDefaultAsync();
 
             if (report == null)
-            {
                 throw new KeyNotFoundException(
                     "CIBIL report not found. Generate the score first.");
-            }
 
             ValidateCustomerDetails(customer);
 
@@ -75,9 +66,7 @@ namespace LoanApplication.Infrastructure.Repositories
             int employmentScore = GetEmploymentScore(customer.EmploymentType);
             int ageScore = GetAgeScore(age);
 
-            decimal foir = Math.Round(
-                investment / income * 100m, 2);
-
+            decimal foir = Math.Round(investment / income * 100m, 2);
             int foirScore = GetFoirScore(foir);
 
             return new CibilScoreResponseDto
@@ -96,16 +85,13 @@ namespace LoanApplication.Infrastructure.Repositories
             };
         }
 
-        // Generate and save a new CIBIL score
         public async Task<CibilScoreResponseDto> GenerateScoreAsync(int customerId)
         {
             var customer = await db.Customers
                 .FirstOrDefaultAsync(c => c.CustomerId == customerId);
 
             if (customer == null)
-            {
                 throw new KeyNotFoundException("Customer not found.");
-            }
 
             ValidateCustomerDetails(customer);
 
@@ -119,12 +105,10 @@ namespace LoanApplication.Infrastructure.Repositories
             int ageScore = GetAgeScore(age);
 
             // FOIR = Monthly financial obligations / Monthly income * 100
-            decimal foir = Math.Round(
-                investment / income * 100m, 2);
-
+            decimal foir = Math.Round(investment / income * 100m, 2);
             int foirScore = GetFoirScore(foir);
 
-            // Calculate total score
+            // Calculate total CIBIL score
             int finalScore =
                 incomeScore +
                 employmentScore +
@@ -133,7 +117,24 @@ namespace LoanApplication.Infrastructure.Repositories
 
             string status = GetCibilStatus(finalScore);
 
-            // Create CIBIL report
+            // Debug logs
+            Console.WriteLine("========== CIBIL SCORE DEBUG ==========");
+            Console.WriteLine($"Customer ID        : {customer.CustomerId}");
+            Console.WriteLine($"Customer Name      : {customer.FirstName} {customer.LastName}");
+            Console.WriteLine($"Monthly Income     : {income}");
+            Console.WriteLine($"Income Score       : {incomeScore}");
+            Console.WriteLine($"Employment Type    : {customer.EmploymentType}");
+            Console.WriteLine($"Employment Score   : {employmentScore}");
+            Console.WriteLine($"Age                : {age}");
+            Console.WriteLine($"Age Score          : {ageScore}");
+            Console.WriteLine($"Monthly Investment : {investment}");
+            Console.WriteLine($"FOIR               : {foir}%");
+            Console.WriteLine($"FOIR Score         : {foirScore}");
+            Console.WriteLine($"Final CIBIL Score  : {finalScore}");
+            Console.WriteLine($"CIBIL Status       : {status}");
+            Console.WriteLine("=======================================");
+
+            // Save CIBIL report
             var report = new CibilReport
             {
                 CustomerId = customer.CustomerId,
@@ -143,10 +144,8 @@ namespace LoanApplication.Infrastructure.Repositories
             };
 
             db.CibilReports.Add(report);
-
             await db.SaveChangesAsync();
 
-            // Return generated score details
             return new CibilScoreResponseDto
             {
                 CibilReportId = report.CibilReportId,
@@ -163,27 +162,20 @@ namespace LoanApplication.Infrastructure.Repositories
             };
         }
 
-        // Validate details required for score generation
         private static void ValidateCustomerDetails(Customer customer)
         {
             if (!customer.Age.HasValue)
-            {
                 throw new InvalidOperationException(
                     "Please complete your age before generating the CIBIL score.");
-            }
 
             if (!customer.MonthlyIncome.HasValue ||
                 customer.MonthlyIncome.Value <= 0)
-            {
                 throw new InvalidOperationException(
                     "Please enter a valid monthly income before generating the CIBIL score.");
-            }
 
             if (string.IsNullOrWhiteSpace(customer.EmploymentType))
-            {
                 throw new InvalidOperationException(
                     "Please complete your employment type before generating the CIBIL score.");
-            }
         }
 
         private static int GetIncomeScore(decimal income)
@@ -200,20 +192,24 @@ namespace LoanApplication.Infrastructure.Repositories
             return 400;
         }
 
+        // Matches registration values: Private, Government, Self Employed
         private static int GetEmploymentScore(string? employment)
         {
             string type = employment?.Trim().ToLowerInvariant() ?? "";
 
-            if (type == "government")
-                return 200;
+            return type switch
+            {
+                "government" => 200,
 
-            if (type == "private")
-                return 150;
+                "private" or "salaried" => 150,
 
-            if (type == "self" || type == "self-employed")
-                return 100;
+                "self employed" or "self-employed" => 100,
 
-            return 0;
+                // Support legacy registration values
+                "business" => 100,
+
+                _ => 0
+            };
         }
 
         private static int GetAgeScore(int age)
