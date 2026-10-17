@@ -159,6 +159,8 @@ using (var scope = app.Services.CreateScope())
         "emi-reminder-check",
         service => service.CheckUpcomingEmis(),
         Cron.Daily
+
+
     );
 }
 
